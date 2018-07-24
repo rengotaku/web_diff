@@ -70,11 +70,6 @@ gulp.task('js', function() {
   return jsbuild.pipe(gulp.dest(folder.build + 'assets/js/'));
 });
 
-gulp.task( 'min_js', ['js'], function() {
-    return gulp.src(folder.src + 'assets/js/*.min.js')
-    .pipe( gulp.dest(folder.build + 'assets/js') );
-} );
-
 gulp.task( 'font', ['images'], function() {
     return gulp.src(
         [ folder.src + 'assets/fonts/**' ],
@@ -128,7 +123,7 @@ gulp.task('watch', function() {
   gulp.watch(folder.src + 'html/**/*', ['html']);
 
   // javascript changes
-  gulp.watch(folder.src + 'assets/js/**/*', ['js', 'min_js']);
+  gulp.watch(folder.src + 'assets/js/**/*', ['js']);
 
   // css changes
   gulp.watch(folder.src + 'assets/scss/**/*', ['css', 'min_css']);
@@ -140,4 +135,4 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['run', 'watch']);
 
-gulp.task('run', ['html', 'css', 'min_css', 'css_image', 'js', 'min_js', 'font']);
+gulp.task('run', ['html', 'css', 'min_css', 'css_image', 'js', 'font']);
