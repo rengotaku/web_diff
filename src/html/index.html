@@ -51,16 +51,16 @@
                       <form method="post" action="#">
                         <div class="row gtr-uniform">
                           <div class="col-12">
-                            <h4>ヘッダー</h4>
-                            <textarea name="header-msg" id="header-msg" placeholder="Header message." rows="6"></textarea>
+                            <h4>メッセージ</h4>
+                            <textarea name="main-msg" id="main-msg" placeholder="Main message." rows="3"></textarea>
                           </div>
                           <div class="col-12">
-                            <h4>メイン</h4>
-                            <textarea name="main-msg" id="main-msg" placeholder="Main message." rows="6"></textarea>
+                            <h4>ヘッダー</h4>
+                            <textarea name="header-msg" id="header-msg" placeholder="Header message." rows="2"></textarea>
                           </div>
                           <div class="col-12">
                             <h4>フッター</h4>
-                            <textarea name="footer-msg" id="footer-msg" placeholder="Footer message" rows="6"></textarea>
+                            <textarea name="footer-msg" id="footer-msg" placeholder="Footer message" rows="2"></textarea>
                           </div>
                           <div class="col-12">
                             <ul class="actions">
@@ -68,7 +68,7 @@
                             </ul>
                           </div>
                           <div class="col-12">
-                            <textarea name="make-msg" id="make-msg" placeholder="Make message" rows="6"></textarea>
+                            <textarea name="make-msg" id="make-msg" placeholder="Make message" rows="5"></textarea>
                           </div>
                         </div>
                       </form>
@@ -83,11 +83,13 @@
                           </div>
                           <div class="col-12 col-12-xsmall">
                             <h4>##tags##</h4>
-                            <p>タグを埋め込む</p>
+                            <p>タグ</p>
                             <input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
                             <input type="checkbox" name="random-order" id="random-order">
                             <label for="random-order">タグの順番をランダム</label>
-                            <input name="select-tag-num" placeholder="タグの選択数(未入力時は全て)" type="text">
+                            <input id="select-tag-num" name="select-tag-num" placeholder="タグの選択数(未入力時は全て)" type="text">
+                            <input type="checkbox" name="tag-per-line" id="tag-per-line">
+                            <label for="tag-per-line">タグを改行して表示</label>
                           </div>
                         </div>
                       </form>
@@ -173,7 +175,38 @@
             var rawTagsStr = $('input[name="tags"]').val();
             var tags = rawTagsStr.split(',');
 
-            if($('#random-order').val()){
+            // タグからランダムに取得する
+            if($('#select-tag-num').val() != ""){
+              function randomAry(array, num) {
+                var a = array;
+                var t = [];
+                var r = [];
+                var l = a.length;
+                var n = num < l ? num : l;
+                while (n-- > 0) {
+                  var i = Math.random() * l | 0;
+                  r[n] = t[i] || a[i];
+                  --l;
+                  t[i] = t[l] || a[l];
+                }
+                return r;
+              }
+
+              var selectTagNum = $('#select-tag-num').val();
+              // 指定されたタグ数が多すぎ
+              if(selectTagNum > tags.length){
+                selectTagNum = tags.length;
+              }
+              // 指定されたタグ数がマイナス
+              if(tags.length < 0){
+                selectTagNum = tags.length;
+              }
+
+              tags = randomAry(tags, selectTagNum);
+            }
+
+            // ランダムに配置する
+            if($('#random-order').prop('checked')){
               function shuffleAry(ary) {
                 var i = ary.length;
                 while(i){
@@ -188,7 +221,13 @@
               tags = shuffleAry(tags);
             }
 
-            var tagsStr = '#' + tags.join(' #'); // #tag #tag...
+            var tagsStr = null;
+            // タグを一行毎に出力する
+            if($('#tag-per-line').prop('checked')){
+              tagsStr = '#' + tags.join('\n#');
+            }else{
+              tagsStr = '#' + tags.join(' #'); // #tag #tag...
+            }
 
             return str.replace(new RegExp(TAG_MARK), tagsStr);
           }
