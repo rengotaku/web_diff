@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-12">
                           <h4 style="color: #21b2a6">タグ<sub>##TAGS##</sub></h4>
-                          <input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
+                          <input id="tags" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
                           <br>
                           <input type="checkbox" name="random-order" id="random-order">
                           <label for="random-order">順番をランダム</label>
@@ -213,6 +213,7 @@
 
             $('#template-msg').val(settings['template']);
             $('#new-line').val(settings['new_line']);
+            $('#tags').val(settings['tags']);
             $('#select-tag-num').val(settings['select_tag_num']);
             $('#tag-per-line').prop("checked", settings['tag_per_line']);
             $('#random-order').prop("checked", settings['random_order']);
@@ -225,6 +226,7 @@
             var settings = {
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
+              tags: formatTag($('#tags').val()),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
@@ -280,11 +282,22 @@
           }
 
           /**
+           * ＃or空白区切りの文字列を「#1#2#3」の形式で返却する
+           */
+         	function formatTag(str){
+            str = str.replace(/^\s*#|\s+/, '');
+            str = str.replace(/#/g, ' ');
+            str = str.replace(/\s+/g, '#');
+            return '#' + str;
+         	}
+
+          /**
            * タグコードをタグに変換
            */
           function replaceTags(str){
-            var rawTagsStr = $('input[name="tags"]').val();
-            var tags = rawTagsStr.split(',');
+            var rawTagsStr = $('#tags').val();
+            rawTagsStr = formatTag(rawTagsStr);
+            var tags = rawTagsStr.substring(1, rawTagsStr.length - 1).split('#');
 
             // タグからランダムに取得する
             if($('#select-tag-num').val() != ""){
