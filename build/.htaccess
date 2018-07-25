@@ -1,4 +1,4 @@
 RewriteEngine on
-# htmlファイルを増やす度に追加する
-RewriteCond %{REQUEST_URI} ^/(index|about).html$
-RewriteRule ^(.*)$ /html/$1  [R=301,L]
+RewriteRule ^$ /index.html
+RewriteCond %{REQUEST_URI} !^/html/.+$
+RewriteRule ^(.+\.html)$ html/$1 [L]
