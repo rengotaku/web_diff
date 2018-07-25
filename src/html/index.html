@@ -11,6 +11,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
   </head>
   <body class="is-preload">
 
@@ -19,25 +20,22 @@
 
         <!-- Header -->
           <header id="header">
-            <h1><a href="index.html">Insta message maker</a></h1>
-<!--
+            <h1><a href="index.html"><span style="color: #21b2a6">I</span>nsta <span style="color: #21b2a6">m</span>essage <span style="color: #21b2a6">m</span>aker</a></h1>
+
             <nav id="nav">
               <ul>
                 <li class="special">
                   <a href="#menu" class="menuToggle"><span>Menu</span></a>
                   <div id="menu">
                     <ul>
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="generic.html">Generic</a></li>
-                      <li><a href="elements.html">Elements</a></li>
-                      <li><a href="#">Sign Up</a></li>
-                      <li><a href="#">Log In</a></li>
+                      <li><a href="index.html">MAKE</a></li>
+                      <li><a href="about.html">ABOUT</a></li>
                     </ul>
                   </div>
                 </li>
               </ul>
             </nav>
- -->
+
           </header>
 
         <!-- Main -->
@@ -46,51 +44,58 @@
               <div class="inner">
 
                 <section>
-                  <h3>テンプレートの作成</h4>
                   <div class="row">
-                    <div class="col-9 col-12-medium">
-                      <form method="post" action="#">
-                        <div class="row gtr-uniform">
-                          <div class="col-12">
-                            <h4>##MSG##</h4>
-                            <p>メッセージ</p>
-                            <textarea name="msg" id="msg" placeholder="メッセージを入力" rows="3"></textarea>
-                          </div>
-                          <div class="col-12">
-                            <h4>テンプレート</h4>
-                            <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含めたテンプレートを記入してください。" rows="3"></textarea>
-                          </div>
-                          <div class="col-12">
-                            <ul class="actions">
-                              <li><a href="#" id="form-button-submit" class="form-button-submit button primary" onclick="return false;">Make</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-12">
-                            <textarea name="make-msg" id="make-msg" placeholder="Make message" rows="5"></textarea>
-                          </div>
+                    <div class="col-12" style="padding-bottom: 2em;">
+                      <div class="row gtr-uniform">
+                        <div class="col-12">
+                          <h4 style="color: #21b2a6">メッセージ<sub>##MSG##</sub></h4>
+                          <textarea name="msg" id="msg" placeholder="メッセージを入力" rows="3"></textarea>
                         </div>
-                      </form>
+                      </div>
                     </div>
-                    <div class="col-3 col-12-medium">
-                      <form method="post" action="#">
-                        <div class="row gtr-uniform">
-                          <div class="col-12 col-12-xsmall">
-                            <h4>^\n$</h4>
-                            <p>空白改行の代わり</p>
-                            <input id="new-line" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
-                          </div>
-                          <div class="col-12 col-12-xsmall">
-                            <h4>##tags##</h4>
-                            <p>タグ</p>
-                            <input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
-                            <input type="checkbox" name="random-order" id="random-order">
-                            <label for="random-order">タグの順番をランダム</label>
-                            <input id="select-tag-num" name="select-tag-num" placeholder="タグの選択数(未入力時は全て)" type="text">
-                            <input type="checkbox" name="tag-per-line" id="tag-per-line">
-                            <label for="tag-per-line">タグを改行して表示</label>
-                          </div>
+                    <div class="col-12">
+                      <div class="col-12">
+												<ul class="icons">
+													<li id="option-open-btn"><a href="#" class="icon fa-arrow-circle-down" click="return false;"></a><b style="padding-left: 0.5em;">オプションを開く</b></li>
+													<li id="option-close-btn" style="display: none;"><a href="#" class="icon fa-arrow-circle-up" click="return false;"></a><b style="padding-left: 0.5em;">オプションを閉じる</b></li>
+												</ul>
+                      </div>
+                    </div>
+                    <div id="option-area" style="display: none; padding-bottom: 2em;" class="col-12 col-12-medium">
+                      <div class="row gtr-uniform">
+                        <div class="col-12">
+                          <h4 style="color: #21b2a6">テンプレート</h4>
+                          <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含めたテンプレートを記入してください。" rows="3"></textarea>
                         </div>
-                      </form>
+                        <div class="col-12">
+                          <h4 style="color: #21b2a6">タグ<sub>##TAGS##</sub></h4>
+                          <input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
+                          <br>
+                          <input type="checkbox" name="random-order" id="random-order">
+                          <label for="random-order">順番をランダム</label>
+                          <input type="checkbox" name="tag-per-line" id="tag-per-line">
+                          <label for="tag-per-line">改行して表示</label>
+
+	                        <div class="row">
+	                          <div class="col-3">
+	                            <input id="select-tag-num" name="select-tag-num" placeholder="個数" type="text">
+	                          </div>
+	                          <div class="col-3">
+	                            <sub>個を選択</sub>
+	                          </div>
+	                        </div>
+                        </div>
+                        <div class="col-12">
+                          <h4 style="color: #21b2a6">空白改行の代わり<sub></sub></h4>
+                          <input id="new-line" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12" style="padding-bottom: 2em;">
+                      <ul class="actions fit">
+                        <li><a href="#" id="make-btn" class="make-btn button primary fit" onclick="return false;">作成</a></li>
+                      </ul>
+                      <textarea name="make-msg" id="make-msg" placeholder="作成されたメッセージ" onclick="this.select();" rows="5"></textarea>
                     </div>
                   </div>
                 </section>
@@ -119,19 +124,29 @@
 
     <!-- Scripts -->
       <script src="../assets/js/main.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
       <script>
         const MSG_MARK = "##MSG##";
         const TAG_MARK = "##TAGS##";
 
-        //変数storageにsessionStorageを格納
-        const storage = sessionStorage;
+        var storage = null;
+        try {
+	        //変数storageにsessionStorageを格納
+	        var storage = sessionStorage;
+        } catch(e){
+        	storage = {
+        		getItem: function(key, val){},
+        		setItem: function(key){},
+        	}
+        	// nothing
+        }
 
         (function($) {
           function init(){
             loadSetting();
 
-            $('#form-button-submit').on('click', function(){
+            $('#make-btn').on('click', function(){
               var messages = [];
 
               var templateMessage = $('#template-msg').val();
@@ -141,6 +156,51 @@
 
               saveSettings();
             });
+
+            $('#option-open-btn').on('click', function(){
+            	$('#option-area').css('display', 'block');
+
+            	$('#option-open-btn').css('display', 'none');
+            	$('#option-close-btn').css('display', 'block');
+            });
+            $('#option-close-btn').on('click', function(){
+            	$('#option-area').css('display', 'none');
+
+            	$('#option-open-btn').css('display', 'block');
+            	$('#option-close-btn').css('display', 'none');
+            });
+
+            $('#make-msg').on('focus', function(){
+            	if(execCopy($(this).val())){
+            		toastr.success('メッセージをコピーしました。')
+            	}else{
+            		toastr.error('メッセージをコピーできませんでした。')
+            	}
+
+            	/**
+            	 * コピーする
+            	 * https://qiita.com/simiraaaa/items/2e7478d72f365aa48356
+            	 */
+							function execCopy(string){
+							  var temp = document.createElement('div');
+
+							  temp.appendChild(document.createElement('pre')).textContent = string;
+
+							  var s = temp.style;
+							  s.position = 'fixed';
+							  s.left = '-100%';
+
+							  document.body.appendChild(temp);
+							  document.getSelection().selectAllChildren(temp);
+
+							  var result = document.execCommand('copy');
+
+							  document.body.removeChild(temp);
+							  // true なら実行できている falseなら失敗か対応していないか
+							  return result;
+							}
+            });
+
           }
 
           /**
