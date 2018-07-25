@@ -57,7 +57,7 @@ gulp.task('html', ['images'], function() {
 // JavaScript processing
 gulp.task('js', function() {
 
-  var jsbuild = gulp.src(folder.src + 'assets/js/**/*')
+  var jsbuild = gulp.src([folder.src + 'assets/js/**/*'])
     .pipe(deporder())
     .pipe(concat('main.js'));
 
@@ -91,7 +91,7 @@ gulp.task('css', ['images', 'font'], function() {
     postCssOpts.push(cssnano);
   }
 
-  return gulp.src(folder.src + 'assets/sass/main.scss')
+  return gulp.src(folder.src + 'assets/scss/origin/main.scss')
     .pipe(sass({
       outputStyle: 'nested',
       imagePath: 'images/',
@@ -109,7 +109,7 @@ gulp.task( 'min_css', ['css'], function() {
 } );
 
 gulp.task( 'css_image', ['css'], function() {
-    return gulp.src(folder.src + 'assets/scss/images/**')
+    return gulp.src(folder.src + 'assets/scss/origin/images/**')
     .pipe( gulp.dest(folder.build + 'assets/css/images') );
 } );
 

@@ -1,3 +1,7 @@
+/* requires:
+origin/jquery.min.js
+*/
+
 (function($) {
 
 	/**

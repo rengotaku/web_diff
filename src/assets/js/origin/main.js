@@ -1,6 +1,9 @@
 /* requires:
-util.js
+origin/breakpoints.min.js
+origin/browser.min.js
+origin/util.js
 */
+
 /*
 	Spectral by HTML5 UP
 	html5up.net | @ajlkn
