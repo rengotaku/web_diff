@@ -1,167 +1,200 @@
 <!DOCTYPE HTML>
 <!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Spectral by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-	</head>
-	<body class="landing is-preload">
+  <head>
+    <title>インスタメッセージメーカー</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+    <!-- Page Wrapper -->
+      <div id="page-wrapper">
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Spectral</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="generic.html">Generic</a></li>
-											<li><a href="elements.html">Elements</a></li>
-											<li><a href="#">Sign Up</a></li>
-											<li><a href="#">Log In</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+        <!-- Header -->
+          <header id="header">
+            <h1><a href="index.html">Insta message maker</a></h1>
+<!--
+            <nav id="nav">
+              <ul>
+                <li class="special">
+                  <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                  <div id="menu">
+                    <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="generic.html">Generic</a></li>
+                      <li><a href="elements.html">Elements</a></li>
+                      <li><a href="#">Sign Up</a></li>
+                      <li><a href="#">Log In</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+ -->
+          </header>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Spectral</h2>
-							<p>Another fine responsive<br />
-							site template freebie<br />
-							crafted by <a href="http://html5up.net">HTML5 UP</a>.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button primary">Activate</a></li>
-							</ul>
-						</div>
-						<a href="#one" class="more scrolly">Learn More</a>
-					</section>
+        <!-- Main -->
+          <article id="main">
+            <section class="wrapper style5">
+              <div class="inner">
 
-				<!-- One -->
-					<section id="one" class="wrapper style1 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Arcu aliquet vel lobortis ata nisl<br />
-								eget augue amet aliquet nisl cep donec</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
-							</header>
-							<ul class="icons major">
-								<li><span class="icon fa-diamond major style1"><span class="label">Lorem</span></span></li>
-								<li><span class="icon fa-heart-o major style2"><span class="label">Ipsum</span></span></li>
-								<li><span class="icon fa-code major style3"><span class="label">Dolor</span></span></li>
-							</ul>
-						</div>
-					</section>
+                <section>
+                  <h3>テンプレートの作成</h4>
+                  <div class="row">
+                    <div class="col-9 col-12-medium">
+                      <form method="post" action="#">
+                        <div class="row gtr-uniform">
+                          <div class="col-12">
+                            <h4>ヘッダー</h4>
+                            <textarea name="header-msg" id="header-msg" placeholder="Header message." rows="6"></textarea>
+                          </div>
+                          <div class="col-12">
+                            <h4>メイン</h4>
+                            <textarea name="main-msg" id="main-msg" placeholder="Main message." rows="6"></textarea>
+                          </div>
+                          <div class="col-12">
+                            <h4>フッター</h4>
+                            <textarea name="footer-msg" id="footer-msg" placeholder="Footer message" rows="6"></textarea>
+                          </div>
+                          <div class="col-12">
+                            <ul class="actions">
+                              <li><a href="#" id="form-button-submit" class="form-button-submit button primary" onclick="return false;">Make</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-12">
+                            <textarea name="make-msg" id="make-msg" placeholder="Make message" rows="6"></textarea>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-3 col-12-medium">
+                      <form method="post" action="#">
+                        <div class="row gtr-uniform">
+                          <div class="col-12 col-12-xsmall">
+                            <h4>^\n$</h4>
+                            <p>空白改行の代わり</p>
+                            <input name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
+                          </div>
+                          <div class="col-12 col-12-xsmall">
+                            <h4>##tags##</h4>
+                            <p>タグを埋め込む</p>
+                            <input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
+                            <input type="checkbox" name="random-order" id="random-order">
+                            <label for="random-order">タグの順番をランダム</label>
+                            <input name="select-tag-num" placeholder="タグの選択数(未入力時は全て)" type="text">
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+          </article>
 
-				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div class="image"><img src="../images/pic01.jpg" alt="" /></div><div class="content">
-								<h2>Magna primis lobortis<br />
-								sed ullamcorper</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="../images/pic02.jpg" alt="" /></div><div class="content">
-								<h2>Tortor dolore feugiat<br />
-								elementum magna</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="../images/pic03.jpg" alt="" /></div><div class="content">
-								<h2>Augue eleifend aliquet<br />
-								sed condimentum</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-							</div>
-						</section>
-					</section>
 
-				<!-- Three -->
-					<section id="three" class="wrapper style3 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Accumsan mus tortor nunc aliquet</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
-								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
-							</header>
-							<ul class="features">
-								<li class="icon fa-paper-plane-o">
-									<h3>Arcu accumsan</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-laptop">
-									<h3>Ac Augue Eget</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-code">
-									<h3>Mus Scelerisque</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-headphones">
-									<h3>Mauris Imperdiet</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-heart-o">
-									<h3>Aenean Primis</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-flag-o">
-									<h3>Tortor Ut</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-							</ul>
-						</div>
-					</section>
+        <!-- Footer -->
+          <footer id="footer">
+<!--
+            <ul class="icons">
+              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+              <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+ -->
+            <ul class="copyright">
+              <li>&copy; Insta message maker. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </footer>
 
-				<!-- CTA -->
-					<section id="cta" class="wrapper style4">
-						<div class="inner">
-							<header>
-								<h2>Arcue ut vel commodo</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
-							</header>
-							<ul class="actions stacked">
-								<li><a href="#" class="button fit primary">Activate</a></li>
-								<li><a href="#" class="button fit">Learn More</a></li>
-							</ul>
-						</div>
-					</section>
+      </div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
+    <!-- Scripts -->
+      <script src="../assets/js/main.js"></script>
 
-			</div>
+      <script>
+        const TAG_MARK = "##TAGS##";
+        (function($) {
+          function init(){
+            $('#form-button-submit').on('click', function(){
+              var headerMessage = $('textarea[name="header-msg"]').val();
+              var mainMessage = $('textarea[name="main-msg"]').val();
+              var footerMessage = $('textarea[name="footer-msg"]').val();
 
-		<!-- Scripts -->
-		<script src="../assets/js/main.js"></script>
+              var makeMessage = [replacer(headerMessage), replacer(mainMessage), replacer(footerMessage)].join("\n");
+              $('textarea[name="make-msg"]').val(makeMessage);
+            });
+          }
 
-	</body>
+          function replacer(str){
+            str = replaceNewLine(str);
+
+            if(hasTags(str)){
+              str = replaceTags(str);
+            }
+
+            return str;
+          }
+
+          /**
+           * 改行を指定の文字列に変換
+           */
+          function replaceNewLine(str){
+            var newLine = $('input[name="new-line"]').val();
+            var lines = str.split(/\r?\n/g);
+            lines.forEach(function(val, i, ar){
+              if(val.length == 0){
+                ar[i] = newLine;
+              }
+            });
+
+            return lines.join('\n');
+          }
+
+          /**
+           * タグを持っているか？
+           */
+          function hasTags(str){
+            return str.match(new RegExp(TAG_MARK));
+          }
+
+          /**
+           * タグコードをタグに変換
+           */
+          function replaceTags(str){
+            var rawTagsStr = $('input[name="tags"]').val();
+            var tags = rawTagsStr.split(',');
+
+            if($('#random-order').val()){
+              function shuffleAry(ary) {
+                var i = ary.length;
+                while(i){
+                  var j = Math.floor(Math.random()*i);
+                  var t = ary[--i];
+                  ary[i] = ary[j];
+                  ary[j] = t;
+                }
+                return ary;
+              }
+
+              tags = shuffleAry(tags);
+            }
+
+            var tagsStr = '#' + tags.join(' #'); // #tag #tag...
+
+            return str.replace(new RegExp(TAG_MARK), tagsStr);
+          }
+
+          init();
+        })(jQuery);
+      </script>
+  </body>
 </html>
