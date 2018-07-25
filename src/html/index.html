@@ -123,17 +123,15 @@
 
         var storage = null;
         const SAVE_KEY = "settings";
-        try {
-	        //変数storageにsessionStorageを格納
-	        var storage = sessionStorage;
-        } catch(e){
+				if(('localStorage' in window) && (window.localStorage !== null)) {
+	        var storage = localStorage;
+				} else {
         	toastr.error('ローカルストレージが使用できません。');
         	storage = {
         		getItem: function(key, val){},
         		setItem: function(key){},
         	}
-        	// nothing
-        }
+				}
 
         (function($) {
           function init(){
