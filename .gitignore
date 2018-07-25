@@ -93,4 +93,5 @@ typings/
 # my
 build/*
 !.keep
+!.htaccess
 .DS_Store
