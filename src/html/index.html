@@ -1,277 +1,174 @@
 <!DOCTYPE HTML>
 <!--
-	Strongly Typed by HTML5 UP
+	Spectral by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 	<head>
-		<title>インスタメッセージメーカー</title>
+		<title>Spectral by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+	<body class="landing is-preload">
 
-			<!-- Header -->
-				<section id="header">
-					<div class="container">
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
 
-						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">Insta message maker</a></h1>
-							<p>テaスト</p>
-
-						<!-- Nav -->
-<!-- 
-							<nav id="nav">
-								<ul>
-									<li><a class="icon fa-home" href="index.html"><span>Introduction</span></a></li>
-									<li>
-										<a href="#" class="icon fa-bar-chart-o"><span>Dropdown</span></a>
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Spectral</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
 										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">Generic</a></li>
+											<li><a href="elements.html">Elements</a></li>
+											<li><a href="#">Sign Up</a></li>
+											<li><a href="#">Log In</a></li>
 										</ul>
-									</li>
-									<li><a class="icon fa-cog" href="left-sidebar.html"><span>Left Sidebar</span></a></li>
-									<li><a class="icon fa-retweet" href="right-sidebar.html"><span>Right Sidebar</span></a></li>
-									<li><a class="icon fa-sitemap" href="no-sidebar.html"><span>No Sidebar</span></a></li>
-								</ul>
-							</nav>
- -->
-					</div>
-				</section>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
 
-			<!-- Main -->
-				<section id="main">
-					<div class="container">
-						<div class="row">
-
-							<!-- Content -->
-								<div id="content" class="col-8 col-12-medium">
-
-									<!-- Post -->
-										<article class="box post">
-											<section>
-												<form method="post" action="#">
-													<div class="row gtr-50">
-														<div class="col-12">
-															<h3>ヘッダー</h3>
-															<textarea name="header" placeholder="Message"></textarea>
-														</div>
-														<div class="col-12">
-															<h3>メイン</h3>
-															<textarea name="main" placeholder="Message"></textarea>
-														</div>
-														<div class="col-12">
-															<h3>フッター</h3>
-															<textarea name="footer" placeholder="Message"></textarea>
-														</div>
-														<div class="col-12">
-															<a href="#" id="form-button-submit" class="form-button-submit button icon fa-envelope" onclick="return false;">Make</a>
-														</div>
-														<div class="col-12">
-															<h3>作成されたメッセージ</h3>
-															<textarea name="make-message" placeholder="Message"></textarea>
-														</div>
-													</div>
-												</form>
-											</section>
-										</article>
-								</div>
-
-							<!-- Sidebar -->
-								<div id="sidebar" class="col-4 col-12-medium">
-
-									<!-- Excerpts -->
-										<section>
-											<ul class="divided">
-												<li>
-
-														<article class="box excerpt">
-															<header>
-																<span class="date">^\n$</span>
-																<h3>空白改行の代わり</h3>
-															</header>
-															<form method="post" action="#">
-																<div class="row gtr-50">
-																	<div class="col-12">
-																		<input name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
-																	</div>
-																</div>
-															</form>
-														</article>
-
-												</li>
-												<li>
-
-														<article class="box excerpt">
-															<header>
-																<span class="date">##tags##</span>
-																<h3>タグを埋め込む</h3>
-															</header>
-															<form method="post" action="#">
-																<div class="row gtr-50">
-																	<div class="col-12">
-																		<input name="tags" placeholder="カンマ(,)区切りでタグを入力" type="text">
-																		<ul class="icons">
-																			<li id="chk-random-order" class="checkbox icon fa-check">
-																			  タグの順番をランダム
-																			</li>
-																		</ul>
-																		<ul class="icons checkbox">
-																			<li id="chk-random-select" class="checkbox icon fa-check">
-																			  タグをランダムに選択する
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-															</form>
-														</article>
-
-												</li>
-												<li>
-
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">July 24</span>
-																<h3><a href="#">One more post</a></h3>
-															</header>
-															<p>Lorem ipsum dolor odio facilisis convallis. Etiam non nunc vel est
-															suscipit convallis non id orci lorem ipsum sed magna consequat feugiat lorem dolore.</p>
-														</article>
-
-												</li>
-											</ul>
-										</section>
-
-								</div>
-
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Spectral</h2>
+							<p>Another fine responsive<br />
+							site template freebie<br />
+							crafted by <a href="http://html5up.net">HTML5 UP</a>.</p>
+							<ul class="actions special">
+								<li><a href="#" class="button primary">Activate</a></li>
+							</ul>
 						</div>
-					</div>
-				</section>
+						<a href="#one" class="more scrolly">Learn More</a>
+					</section>
 
-			<!-- Footer -->
-				<section id="footer">
-					<div id="copyright" class="container">
-						<ul class="links">
-							<li>&copy; Insta message maker. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Arcu aliquet vel lobortis ata nisl<br />
+								eget augue amet aliquet nisl cep donec</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
+								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+							</header>
+							<ul class="icons major">
+								<li><span class="icon fa-diamond major style1"><span class="label">Lorem</span></span></li>
+								<li><span class="icon fa-heart-o major style2"><span class="label">Ipsum</span></span></li>
+								<li><span class="icon fa-code major style3"><span class="label">Dolor</span></span></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="../images/pic01.jpg" alt="" /></div><div class="content">
+								<h2>Magna primis lobortis<br />
+								sed ullamcorper</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="../images/pic02.jpg" alt="" /></div><div class="content">
+								<h2>Tortor dolore feugiat<br />
+								elementum magna</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="../images/pic03.jpg" alt="" /></div><div class="content">
+								<h2>Augue eleifend aliquet<br />
+								sed condimentum</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+							</div>
+						</section>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Accumsan mus tortor nunc aliquet</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
+								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+							</header>
+							<ul class="features">
+								<li class="icon fa-paper-plane-o">
+									<h3>Arcu accumsan</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon fa-laptop">
+									<h3>Ac Augue Eget</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon fa-code">
+									<h3>Mus Scelerisque</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon fa-headphones">
+									<h3>Mauris Imperdiet</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon fa-heart-o">
+									<h3>Aenean Primis</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon fa-flag-o">
+									<h3>Tortor Ut</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- CTA -->
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>Arcue ut vel commodo</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary">Activate</a></li>
+								<li><a href="#" class="button fit">Learn More</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
-					</div>
-				</section>
+						<ul class="copyright">
+							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
 
-		</div>
+			</div>
 
 		<!-- Scripts -->
 			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
 			<script src="../assets/js/browser.min.js"></script>
 			<script src="../assets/js/breakpoints.min.js"></script>
-<!--
 			<script src="../assets/js/util.js"></script>
--->
-  		<script src="../assets/js/main.js"></script>
-
-  		<script>
-			(function($) {
-				function init(){
-					// チェックボックスを作成
-					$('.checkbox').each(function(i, element){
-						$(element).on('click', function(){
-							if($(this).hasClass('fa-check')){
-								$(this).removeClass('fa-check');
-								$(this).addClass('fa-remove');
-							}else{
-								$(this).removeClass('fa-remove');
-								$(this).addClass('fa-check');
-							}
-						});
-					});
-
-					$('#form-button-submit').on('click', function(){
-						var headerMessage = $('textarea[name="header"]').val();
-						var mainMessage = $('textarea[name="main"]').val();
-						var footerMessage = $('textarea[name="footer"]').val();
-
-						var makeMessage = replacer(headerMessage) + replacer(mainMessage) + replacer(footerMessage);
-						$('textarea[name="make-message"]').val(makeMessage);
-					});
-				}
-
-				function replacer(str){
-					str = replaceNewLine(str);
-
-					if(hasTags(str)){
-						str = replaceTags(str);
-					}
-
-					return str;
-				}
-
-				/**
-				 * 改行を指定の文字列に変換
-				 */
-				function replaceNewLine(str){
-					var newLine = $('input[name="new-line"]').val();
-					var lines = str.split(/\r?\n/g);
-					lines.forEach(function(val, i, ar){
-						if(val.length == 0){
-							ar[i] = newLine;
-						}
-					});
-
-					return lines.join('\n');
-				}
-
-				/**
-				 * タグを持っているか？
-				 */
-				function hasTags(str){
-					return str.match(/##TAGS##/);
-				}
-
-				/**
-				 * タグコードをタグに変換
-				 */
-				function replaceTags(str){
-					var rawTagsStr = $('input[name="tags"]').val();
-					var tags = rawTagsStr.split(',');
-
-					if($('#chk-random-order').hasClass('fa-check')){
-						function shuffleAry(ary) {
-						  var i = ary.length;
-						  while(i){
-						    var j = Math.floor(Math.random()*i);
-						    var t = ary[--i];
-						    ary[i] = ary[j];
-						    ary[j] = t;
-						  }
-  						return ary;
-						}
-
-						tags = shuffleAry(tags);
-					}
-
-					var tagsStr = '#' + tags.join(' #'); // #tag #tag...
-
-					return str.replace(/##TAGS##/g, tagsStr);
-				}
-
-				init();
-			})(jQuery);
-  		</script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>

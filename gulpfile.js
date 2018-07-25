@@ -32,8 +32,8 @@ var
 
 // image processing
 gulp.task('images', function() {
-  var out = folder.build + 'assets/images/';
-  return gulp.src(folder.src + 'assets/images/**/*')
+  var out = folder.build + 'images/';
+  return gulp.src(folder.src + 'images/**/*')
     .pipe(newer(out))
     .pipe(imagemin({ optimizationLevel: 5 }))
     .pipe(gulp.dest(out));
@@ -91,7 +91,7 @@ gulp.task('css', ['images', 'font'], function() {
     postCssOpts.push(cssnano);
   }
 
-  return gulp.src(folder.src + 'assets/scss/main.scss')
+  return gulp.src(folder.src + 'assets/sass/main.scss')
     .pipe(sass({
       outputStyle: 'nested',
       imagePath: 'images/',
