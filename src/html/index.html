@@ -229,7 +229,7 @@
             var settings = {
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
-              tags: formatTag($('#tags').val().substring(1, rawTagsStr.length - 1)),
+              tags: formatTag($('#tags').val().substring(1, rawTagsStr.length)),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
@@ -309,7 +309,7 @@
           function replaceTags(str){
             var rawTagsStr = $('#tags').val();
             rawTagsStr = formatTag(rawTagsStr);
-            var tags = rawTagsStr.substring(1, rawTagsStr.length - 1).split('#');
+            var tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
 
             // タグからランダムに取得する
             if($('#select-tag-num').val() != ""){
