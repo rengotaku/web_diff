@@ -6,7 +6,8 @@
 -->
 <html>
   <head>
-    <title>インスタメッセージメーカー</title>
+    <!-- インスタメッセージメーカー -->
+    <title>IMM</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -51,16 +52,13 @@
                       <form method="post" action="#">
                         <div class="row gtr-uniform">
                           <div class="col-12">
-                            <h4>メッセージ</h4>
-                            <textarea name="main-msg" id="main-msg" placeholder="Main message." rows="3"></textarea>
+                            <h4>##MSG##</h4>
+                            <p>メッセージ</p>
+                            <textarea name="msg" id="msg" placeholder="メッセージを入力" rows="3"></textarea>
                           </div>
                           <div class="col-12">
-                            <h4>ヘッダー</h4>
-                            <textarea name="header-msg" id="header-msg" placeholder="Header message." rows="2"></textarea>
-                          </div>
-                          <div class="col-12">
-                            <h4>フッター</h4>
-                            <textarea name="footer-msg" id="footer-msg" placeholder="Footer message" rows="2"></textarea>
+                            <h4>テンプレート</h4>
+                            <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含めたテンプレートを記入してください。" rows="3"></textarea>
                           </div>
                           <div class="col-12">
                             <ul class="actions">
@@ -123,27 +121,42 @@
       <script src="../assets/js/main.js"></script>
 
       <script>
+        const MSG_MARK = "##MSG##";
         const TAG_MARK = "##TAGS##";
+
         (function($) {
           function init(){
             $('#form-button-submit').on('click', function(){
-              var headerMessage = $('textarea[name="header-msg"]').val();
-              var mainMessage = $('textarea[name="main-msg"]').val();
-              var footerMessage = $('textarea[name="footer-msg"]').val();
+              var messages = [];
 
-              var makeMessage = [replacer(headerMessage), replacer(mainMessage), replacer(footerMessage)].join("\n");
-              $('textarea[name="make-msg"]').val(makeMessage);
+              var templateMessage = $('#template-msg').val();
+              messages.push(replacer(templateMessage));
+
+              $('textarea[name="make-msg"]').val(messages.join("\n"));
             });
           }
 
+          /**
+           * 記号の置換を行う
+           */
           function replacer(str){
-            str = replaceNewLine(str);
+            str = replaceMessage(str);
 
             if(hasTags(str)){
               str = replaceTags(str);
             }
 
+            str = replaceNewLine(str);
+
             return str;
+          }
+
+          /**
+           * メッセージを置換する
+           */
+          function replaceMessage(str){
+            var message = $('#msg').val();
+            return str.replace(new RegExp(MSG_MARK), message);
           }
 
           /**
