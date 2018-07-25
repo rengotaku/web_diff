@@ -77,7 +77,7 @@
                           <label for="tag-per-line">改行して表示</label>
 
 	                        <div class="row">
-	                          <div class="col-3">
+	                          <div class="col-4">
 	                            <input id="select-tag-num" name="select-tag-num" placeholder="個数" type="text">
 	                          </div>
 	                          <div class="col-3">
@@ -106,15 +106,6 @@
 
         <!-- Footer -->
           <footer id="footer">
-<!--
-            <ul class="icons">
-              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-              <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-              <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-              <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul>
- -->
             <ul class="copyright">
               <li>&copy; Insta message maker. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
             </ul>
@@ -131,10 +122,12 @@
         const TAG_MARK = "##TAGS##";
 
         var storage = null;
+        const SAVE_KEY = "settings";
         try {
 	        //変数storageにsessionStorageを格納
 	        var storage = sessionStorage;
         } catch(e){
+        	toastr.error('ローカルストレージが使用できません。');
         	storage = {
         		getItem: function(key, val){},
         		setItem: function(key){},
@@ -207,12 +200,13 @@
            * ストレージの状態を画面に反映
            */
           function loadSetting(){
-            if(!storage.getItem('settings')){ 
+            if(!storage.getItem(SAVE_KEY)){
+            	toastr.info('初期値を設定しました。');
             	setDefaultSettings();
             	return;
             }
 
-            const settings = JSON.parse(storage.getItem('settings'));
+            const settings = JSON.parse(storage.getItem(SAVE_KEY));
 
             $('#template-msg').val(settings['template']);
             $('#new-line').val(settings['new_line']);
@@ -229,14 +223,14 @@
             var settings = {
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
-              tags: formatTag($('#tags').val().substring(1, rawTagsStr.length)),
+              tags: formatTag($('#tags').val().substring(1, $('#tags').val().length)),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
             }
 
             // 設定の保持
-            storage.setItem('settings', JSON.stringify(settings));
+            storage.setItem(SAVE_KEY, JSON.stringify(settings));
           }
 
           /**
