@@ -207,7 +207,10 @@
            * ストレージの状態を画面に反映
            */
           function loadSetting(){
-            if(!storage.getItem('settings')){ return; }
+            if(!storage.getItem('settings')){ 
+            	setDefaultSettings();
+            	return;
+            }
 
             const settings = JSON.parse(storage.getItem('settings'));
 
@@ -226,7 +229,7 @@
             var settings = {
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
-              tags: formatTag($('#tags').val()),
+              tags: formatTag($('#tags').val().substring(1, rawTagsStr.length - 1)),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
@@ -234,6 +237,15 @@
 
             // 設定の保持
             storage.setItem('settings', JSON.stringify(settings));
+          }
+
+          /**
+           * デフォルト値を設定
+           */
+          function setDefaultSettings(){
+            $('#template-msg').val("##MSG##\n\n##TAGS##");
+            $('#new-line').val('・');
+            $('#tags').val('#sample #sample1 #sample2');
           }
 
           /**
