@@ -25,8 +25,61 @@
             <section class="wrapper style5">
               <div class="inner">
                 <section>
-                  <!-- TODO: タグを複数を作って、登録できる画面を作成する。 -->
-                  <h2>タグ一覧</h2>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row gtr-uniform">
+                        <div class="col-12">
+                          <h2>タグ一覧</h2>
+                          <div class="row">
+                            <div class="col-12" style="padding-bottom: 2em;">
+                              <h4 style="color: #21b2a6">タグ1</h4>
+                              <div class="row">
+                                <div class="col-5">
+                                  <input id="tag1-name" name="tag1-name" placeholder="タグ名" type="text">
+                                </div>
+                              </div>
+                              <input id="tags1" name="tags1" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                            </div>
+                            <div class="col-12" style="padding-bottom: 2em;">
+                              <h4 style="color: #21b2a6">タグ2</h4>
+                              <div class="row">
+                                <div class="col-5">
+                                  <input id="tag2-name" name="tag2-name" placeholder="タグ名" type="text">
+                                </div>
+                              </div>
+                              <input id="tags2" name="tags2" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                            </div>
+                            <div class="col-12" style="padding-bottom: 2em;">
+                              <h4 style="color: #21b2a6">タグ3</h4>
+                              <div class="row">
+                                <div class="col-5">
+                                  <input id="tag3-name" name="tag3-name" placeholder="タグ名" type="text">
+                                </div>
+                              </div>
+                              <input id="tags1" name="tags1" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                            </div>
+                            <div class="col-12" style="padding-bottom: 2em;">
+                              <h4 style="color: #21b2a6">タグ4</h4>
+                              <div class="row">
+                                <div class="col-5">
+                                  <input id="tag4-name" name="tag4-name" placeholder="タグ名" type="text">
+                                </div>
+                              </div>
+                              <input id="tags4" name="tags4" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12" style="padding-bottom: 2em;">
+                          <ul class="actions fit">
+                            <li><a href="#" id="regist-btn" class="make-btn button primary fit" onclick="return false;">登録</a></li>
+                          </ul>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </section>
           </article>
@@ -42,8 +95,35 @@
 
       <script>
         (function($) {
+          var storage = modules.helper.getStrage();
+          const SAVE_KEY = "tag_list";
+
           function init(){
             initLayout();
+
+            loadSetting();
+
+            $('#regist-btn').on('click', function(){
+              $('#tag1-name').val(getVal($('#tag1-name').val(), 'タグ1'));
+              $('#tags1').val(modules.helper.formatTag($('#tags1').val()));
+
+              $('#tag2-name').val(getVal($('#tag2-name').val(), 'タグ2'));
+              $('#tags2').val(modules.helper.formatTag($('#tags2').val()));
+
+              $('#tag3-name').val(getVal($('#tag3-name').val(), 'タグ3'));
+              $('#tags3').val(modules.helper.formatTag($('#tags3').val()));
+
+              $('#tag4-name').val(getVal($('#tag4-name').val(), 'タグ4'));
+              $('#tags4').val(modules.helper.formatTag($('#tags4').val()));
+
+              function getVal(val, defaultVal){
+                if(!val || val.length == 0){ return defaultVal; }
+                return val;
+              }
+
+              saveSettings();
+            });
+
           }
 
           /**
@@ -53,6 +133,57 @@
             var text = $('#header h1 a').text();
             $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
           };
+
+          /**
+           * ストレージの状態を画面に反映
+           */
+          function loadSetting(){
+            if(!storage.getItem(SAVE_KEY)){
+              toastr.info('初期値を設定しました。');
+              setDefaultSettings();
+              return;
+            }
+
+            const tagList = JSON.parse(storage.getItem(SAVE_KEY));
+
+            $('#tag1-name').val(tagList['tag1_name']);
+            $('#tags1').val(tagList['tags1']);
+            $('#tag2-name').val(tagList['tag2_name']);
+            $('#tags2').val(tagList['tags2']);
+            $('#tag3-name').val(tagList['tag3_name']);
+            $('#tags3').val(tagList['tags3']);
+            $('#tag4-name').val(tagList['tag4_name']);
+            $('#tags4').val(tagList['tags4']);
+          }
+
+          /**
+           * デフォルト値を設定
+           */
+          function setDefaultSettings(){
+            $('#tag1-name').val('タグ1');
+            $('#tag2-name').val('タグ2');
+            $('#tag3-name').val('タグ3');
+            $('#tag4-name').val('タグ4');
+          }
+
+          /**
+           * 設定をストレージに保存する
+           */
+          function saveSettings(){
+            var settings = {
+              tag1_name: $('#tag1-name').val(),
+              tags1: $('#tags1').val(),
+              tag2_name: $('#tag2-name').val(),
+              tags2: $('#tags2').val(),
+              tag3_name: $('#tag3-name').val(),
+              tags3: $('#tags3').val(),
+              tag4_name: $('#tag4-name').val(),
+              tags4: $('#tags4').val(),
+            }
+
+            // 設定の保持
+            storage.setItem(SAVE_KEY, JSON.stringify(settings));
+          }
 
           init();
         })(jQuery);

@@ -43,7 +43,7 @@
 												</ul>
                       </div>
                     </div>
-                    <div id="option-area" style="display: none; padding-bottom: 2em;" class="col-12 col-12-medium">
+                    <div id="option-area" style="display: none; padding-bottom: 2em;" class="col-12">
                       <div class="row gtr-uniform">
                         <div class="col-12">
                           <h4 style="color: #21b2a6">テンプレート</h4>
@@ -98,17 +98,8 @@
         const MSG_MARK = "##MSG##";
         const TAG_MARK = "##TAGS##";
 
-        var storage = null;
+        var storage = modules.helper.getStrage();
         const SAVE_KEY = "settings";
-				if(('localStorage' in window) && (window.localStorage !== null)) {
-	        var storage = localStorage;
-				} else {
-        	toastr.error('ローカルストレージが使用できません。');
-        	storage = {
-        		getItem: function(key, val){},
-        		setItem: function(key){},
-        	}
-				}
 
         (function($) {
           function init(){
@@ -202,13 +193,22 @@
           }
 
           /**
+           * デフォルト値を設定
+           */
+          function setDefaultSettings(){
+            $('#template-msg').val("##MSG##\n\n##TAGS##");
+            $('#new-line').val('・');
+            $('#tags').val('#sample #sample1 #sample2');
+          }
+
+          /**
            * 設定をストレージに保存する
            */
           function saveSettings(){
             var settings = {
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
-              tags: formatTag($('#tags').val().substring(1, $('#tags').val().length)),
+              tags: modules.helper.formatTag($('#tags').val().substring(1, $('#tags').val().length)),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
@@ -216,15 +216,6 @@
 
             // 設定の保持
             storage.setItem(SAVE_KEY, JSON.stringify(settings));
-          }
-
-          /**
-           * デフォルト値を設定
-           */
-          function setDefaultSettings(){
-            $('#template-msg').val("##MSG##\n\n##TAGS##");
-            $('#new-line').val('・');
-            $('#tags').val('#sample #sample1 #sample2');
           }
 
           /**
@@ -273,21 +264,11 @@
           }
 
           /**
-           * ＃or空白区切りの文字列を「#1#2#3」の形式で返却する
-           */
-         	function formatTag(str){
-            str = str.replace(/^\s*#|\s+/, '');
-            str = str.replace(/#/g, ' ');
-            str = str.replace(/\s+/g, '#');
-            return '#' + str;
-         	}
-
-          /**
            * タグコードをタグに変換
            */
           function replaceTags(str){
             var rawTagsStr = $('#tags').val();
-            rawTagsStr = formatTag(rawTagsStr);
+            rawTagsStr = modules.helper.formatTag(rawTagsStr);
             var tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
 
             // タグからランダムに取得する
