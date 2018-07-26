@@ -52,7 +52,12 @@
                         <div class="col-12">
                           <h4 style="color: #21b2a6">タグ<sub>##TAGS##</sub></h4>
                           <input id="tags" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
-                          <br>
+
+                          <sub>または選ぶ</sub>
+                          <!-- TODO: 仮設置 -->
+                          <select id="tag-list" name="tag-list" >
+                          </select>
+
                           <input type="checkbox" name="random-order" id="random-order">
                           <label for="random-order">順番をランダム</label>
                           <input type="checkbox" name="tag-per-line" id="tag-per-line">
@@ -99,7 +104,10 @@
         const TAG_MARK = "##TAGS##";
 
         var storage = modules.helper.getStrage();
-        const SAVE_KEY = "settings";
+        const keys = {
+          settings: "settings",
+          tag_list: "tag_list",
+        };
 
         (function($) {
           function init(){
@@ -176,20 +184,41 @@
            * ストレージの状態を画面に反映
            */
           function loadSetting(){
-            if(!storage.getItem(SAVE_KEY)){
-            	toastr.info('初期値を設定しました。');
-            	setDefaultSettings();
-            	return;
+            if(!storage.getItem(keys.settings)){
+              setDefaultSettings();
+              toastr.info('基本値に初期値を設定しました。');
+            }else{
+              const settings = JSON.parse(storage.getItem(keys.settings));
+
+              $('#template-msg').val(settings['template']);
+              $('#new-line').val(settings['new_line']);
+              $('#tags').val(settings['tags']);
+              $('#tag-list').val(settings['tag_list']);
+              $('#select-tag-num').val(settings['select_tag_num']);
+              $('#tag-per-line').prop("checked", settings['tag_per_line']);
+              $('#random-order').prop("checked", settings['random_order']);
             }
 
-            const settings = JSON.parse(storage.getItem(SAVE_KEY));
+            if(!storage.getItem(keys.tag_list)){
+              setDefaultTagList();
+              toastr.info('タグリストに初期値を設定しました。');
+            }else{
+              const tagList = JSON.parse(storage.getItem(keys.tag_list));
+              createSelectBox({
+                  zero: '',
+                  one: tagList['tag1_name'],
+                  two: tagList['tag2_name'],
+                  three: tagList['tag3_name'],
+                  four: tagList['tag4_name'],
+                },
+                'tag-list',
+                'zero');
 
-            $('#template-msg').val(settings['template']);
-            $('#new-line').val(settings['new_line']);
-            $('#tags').val(settings['tags']);
-            $('#select-tag-num').val(settings['select_tag_num']);
-            $('#tag-per-line').prop("checked", settings['tag_per_line']);
-            $('#random-order').prop("checked", settings['random_order']);
+              if(storage.getItem(keys.settings)){
+                const settings = JSON.parse(storage.getItem(keys.settings));
+                $('#tag-list').val(settings['tag_list']);
+              }
+            }
           }
 
           /**
@@ -202,6 +231,39 @@
           }
 
           /**
+           * デフォルト値を設定
+           */
+          function setDefaultTagList(){
+            createSelectBox({
+                zero: '',
+                one: 'タグ1',
+                two: 'タグ2',
+                three: 'タグ3',
+                four: 'タグ4',
+              },
+              'tag-list',
+              'zero');
+          }
+
+          /**
+           * デフォルト値を設定
+           */
+          function createSelectBox(characters, targetId, targetVal){
+            var $select = $('#' + targetId),
+                $option,
+                isSelected;
+
+            $.each(characters, function (value, name) {
+                isSelected = (value === targetVal);
+                $option = $('<option>')
+                    .val(value)
+                    .text(name)
+                    .prop('selected', isSelected);
+                $select.append($option);
+            });
+          }
+
+          /**
            * 設定をストレージに保存する
            */
           function saveSettings(){
@@ -209,13 +271,14 @@
               template: $('#template-msg').val(),
               new_line: $('#new-line').val(),
               tags: modules.helper.formatTag($('#tags').val().substring(1, $('#tags').val().length)),
+              tag_list: $('#tag-list').val(),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               random_order: $('#random-order').prop('checked'),
             }
 
             // 設定の保持
-            storage.setItem(SAVE_KEY, JSON.stringify(settings));
+            storage.setItem(keys.settings, JSON.stringify(settings));
           }
 
           /**
@@ -269,7 +332,26 @@
           function replaceTags(str){
             var rawTagsStr = $('#tags').val();
             rawTagsStr = modules.helper.formatTag(rawTagsStr);
-            var tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
+            var tags = null;
+            if($('#tag-list').val() != 'zero'){
+              if(storage.getItem(keys.tag_list)){
+                const tagList = JSON.parse(storage.getItem(keys.tag_list));
+                var selectTag = $('#tag-list').val();
+                if(selectTag == 'one'){
+                  tags = tagList['tags1'];
+                }else if(selectTag == 'two'){
+                  tags = tagList['tags2'];
+                }else if(selectTag == 'three'){
+                  tags = tagList['tags3'];
+                }else if(selectTag == 'four'){
+                  tags = tagList['tags4'];
+                }
+              }else{
+                tags = "";
+              }
+            }else{
+              tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
+            }
 
             // タグからランダムに取得する
             if($('#select-tag-num').val() != ""){

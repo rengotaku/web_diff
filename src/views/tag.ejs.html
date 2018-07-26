@@ -96,7 +96,9 @@
       <script>
         (function($) {
           var storage = modules.helper.getStrage();
-          const SAVE_KEY = "tag_list";
+          const keys = {
+            tag_list: "tag_list",
+          };
 
           function init(){
             initLayout();
@@ -122,6 +124,8 @@
               }
 
               saveSettings();
+
+              toastr.info('タグを保存しました。');
             });
 
           }
@@ -138,13 +142,13 @@
            * ストレージの状態を画面に反映
            */
           function loadSetting(){
-            if(!storage.getItem(SAVE_KEY)){
+            if(!storage.getItem(keys.tag_list)){
               toastr.info('初期値を設定しました。');
               setDefaultSettings();
               return;
             }
 
-            const tagList = JSON.parse(storage.getItem(SAVE_KEY));
+            const tagList = JSON.parse(storage.getItem(keys.tag_list));
 
             $('#tag1-name').val(tagList['tag1_name']);
             $('#tags1').val(tagList['tags1']);
@@ -182,7 +186,7 @@
             }
 
             // 設定の保持
-            storage.setItem(SAVE_KEY, JSON.stringify(settings));
+            storage.setItem(keys.tag_list, JSON.stringify(settings));
           }
 
           init();
