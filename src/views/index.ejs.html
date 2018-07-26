@@ -6,8 +6,7 @@
 -->
 <html>
   <head>
-    <!-- インスタメッセージメーカー -->
-    <title>IMM</title>
+    <title>トップ | <%= title.jp %></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -19,24 +18,7 @@
       <div id="page-wrapper">
 
         <!-- Header -->
-          <header id="header">
-            <h1><a href="index.html"><span style="color: #21b2a6">I</span>nsta <span style="color: #21b2a6">m</span>essage <span style="color: #21b2a6">m</span>aker</a></h1>
-
-            <nav id="nav">
-              <ul>
-                <li class="special">
-                  <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                  <div id="menu">
-                    <ul>
-                      <li><a href="index.html">MAKE</a></li>
-                      <li><a href="about.html">ABOUT</a></li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-
-          </header>
+          <%- include('layout/header.ejs.html') -%>
 
         <!-- Main -->
           <article id="main">
@@ -103,13 +85,8 @@
             </section>
           </article>
 
-
         <!-- Footer -->
-          <footer id="footer">
-            <ul class="copyright">
-              <li>&copy; Insta message maker. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-          </footer>
+          <%- include('layout/footer.ejs.html') -%>
 
       </div>
 
@@ -135,6 +112,8 @@
 
         (function($) {
           function init(){
+            initLayout();
+
             loadSetting();
 
             $('#make-btn').on('click', function(){
@@ -193,6 +172,14 @@
             });
 
           }
+
+          /**
+           * レイアウトの初期処理
+           */
+          function initLayout(){
+            var text = $('#header h1 a').text();
+            $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
+          };
 
           /**
            * ストレージの状態を画面に反映

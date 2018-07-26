@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<!--
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>タグ | <%= title.jp %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  </head>
+  <body class="is-preload">
+
+    <!-- Page Wrapper -->
+      <div id="page-wrapper">
+
+        <!-- Header -->
+          <%- include('layout/header.ejs.html') -%>
+
+        <!-- Main -->
+          <article id="main">
+            <section class="wrapper style5">
+              <div class="inner">
+                <section>
+                  <!-- TODO: タグを複数を作って、登録できる画面を作成する。 -->
+                  <h2>タグ一覧</h2>
+              </div>
+            </section>
+          </article>
+
+        <!-- Footer -->
+          <%- include('layout/footer.ejs.html') -%>
+
+      </div>
+
+    <!-- Scripts -->
+      <script src="../assets/js/main.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+      <script>
+        (function($) {
+          function init(){
+            initLayout();
+          }
+
+          /**
+           * レイアウトの初期処理
+           */
+          function initLayout(){
+            var text = $('#header h1 a').text();
+            $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
+          };
+
+          init();
+        })(jQuery);
+      </script>
+
+  </body>
+</html>
