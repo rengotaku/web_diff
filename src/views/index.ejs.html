@@ -105,11 +105,8 @@
         const MSG_MARK = "##MSG##";
         const TAG_MARK = "##TAGS##";
 
-        var storage = modules.helper.getStrage();
-        const keys = {
-          settings: "settings",
-          tag_list: "tag_list",
-        };
+        const storage = modules.storage_helper.getStorage();
+        const keys = modules.storage_helper.keys;
 
         (function($) {
 // console.log(storage.getItem(keys.settings));
@@ -197,71 +194,47 @@
            */
           function loadSetting(){
             if(!storage.getItem(keys.settings)){
-              setDefaultSettings();
+              modules.storage_helper.setDefaultSettings(storage);
               toastr.info('基本値に初期値を設定しました。');
-            }else{
-              const settings = JSON.parse(storage.getItem(keys.settings));
-
-              $('#template-msg').val(settings['template']);
-              $('#new-line').val(settings['new_line']);
-              // $('#tags').val(settings['tags']);
-              $('#tag-list').val(settings['tag_list']);
-              $('#select-tag-num').val(settings['select_tag_num']);
-              $('#tag-per-line').prop("checked", settings['tag_per_line']);
-              $('#random-order').prop("checked", settings['random_order']);
             }
+
+            const settings = JSON.parse(storage.getItem(keys.settings));
+
+            $('#template-msg').val(settings['template']);
+            $('#new-line').val(settings['new_line']);
+            // $('#tags').val(settings['tags']);
+            $('#tag-list').val(settings['tag_list']);
+            $('#select-tag-num').val(settings['select_tag_num']);
+            $('#tag-per-line').prop("checked", settings['tag_per_line']);
+            $('#random-order').prop("checked", settings['random_order']);
 
             if(!storage.getItem(keys.tag_list)){
-              setDefaultTagList();
+              modules.storage_helper.setDefaultTags(storage);
               toastr.info('タグリストに初期値を設定しました。');
-            }else{
-              const tagList = JSON.parse(storage.getItem(keys.tag_list));
-              createSelectBox({
-                  one: tagList['tag1_name'],
-                  two: tagList['tag2_name'],
-                  three: tagList['tag3_name'],
-                  four: tagList['tag4_name'],
-                },
-                'tag-list',
-                'one');
-
-              $('#tag-one').val(tagList['tags1']);
-              $('#tag-two').val(tagList['tags2']);
-              $('#tag-three').val(tagList['tags3']);
-              $('#tag-four').val(tagList['tags4']);
-
-              if(storage.getItem(keys.settings)){
-                const settings = JSON.parse(storage.getItem(keys.settings));
-                $('#tag-list').val(settings['tag_list']);
-
-                var tags = $('#tag-' + settings['tag_list']).val();
-                $('#tags').val(tags);
-
-              }
             }
-          }
-
-          /**
-           * デフォルト値を設定
-           */
-          function setDefaultSettings(){
-            $('#template-msg').val("##MSG##\n\n##TAGS##");
-            $('#new-line').val('・');
-            $('#tags').val('#sample #sample1 #sample2');
-          }
-
-          /**
-           * デフォルト値を設定
-           */
-          function setDefaultTagList(){
+            const tagList = JSON.parse(storage.getItem(keys.tag_list));
             createSelectBox({
-                one: 'タグ1',
-                two: 'タグ2',
-                three: 'タグ3',
-                four: 'タグ4',
+                one: tagList['tag1_name'],
+                two: tagList['tag2_name'],
+                three: tagList['tag3_name'],
+                four: tagList['tag4_name'],
               },
               'tag-list',
               'one');
+
+            $('#tag-one').val(tagList['tags1']);
+            $('#tag-two').val(tagList['tags2']);
+            $('#tag-three').val(tagList['tags3']);
+            $('#tag-four').val(tagList['tags4']);
+
+            if(storage.getItem(keys.settings)){
+              const settings = JSON.parse(storage.getItem(keys.settings));
+              $('#tag-list').val(settings['tag_list']);
+
+              var tags = $('#tag-' + settings['tag_list']).val();
+              $('#tags').val(tags);
+
+            }
           }
 
           /**
@@ -306,7 +279,7 @@
           function updateTags(){
             const tagList = JSON.parse(storage.getItem(keys.tag_list));
 
-            var strTags = $('#tags').val();
+            var strTags = modules.helper.formatTag($('#tags').val());
 
             switch ($('#tag-list').val()) {
               case "one":

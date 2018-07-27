@@ -10,30 +10,6 @@ modules.helper = (function () {
    * abc defg hij -> [a]bc [d]efg [h]ij
    * のように各要素の先頭文字をタグつけする
    */
-  module.getStrage = function(){
-    try{
-      if(('localStorage' in window) && (window.localStorage !== null)) {
-        return localStorage;
-      } else {
-        toastr.error('ローカルストレージが使用できません。');
-        return {
-          getItem: function(key, val){},
-          setItem: function(key){},
-        }
-      }
-    }catch(e){
-      toastr.error('ローカルストレージが使用できません。');
-      return {
-        getItem: function(key, val){},
-        setItem: function(key){},
-      }
-    }
-  }
-
-  /**
-   * abc defg hij -> [a]bc [d]efg [h]ij
-   * のように各要素の先頭文字をタグつけする
-   */
   module.eachTopCharUpper = function(str, startTag, endTag){
     var strAry = str.split(' ');
     strAry.forEach(function(val,i,ar){
@@ -43,7 +19,6 @@ modules.helper = (function () {
 
     return strAry.join(' ');
   }
-
 
   /**
    * ＃or空白区切りの文字列を「#1#2#3」の形式で返却する
