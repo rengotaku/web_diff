@@ -69,7 +69,7 @@ modules.storage_helper = (function () {
     }
 
     // 設定の保持
-    storage.setItem(module.keys.settings, JSON.stringify(data));
+    storage.setItem(module.keys.tag_list, JSON.stringify(data));
   }
 
 
