@@ -38,7 +38,7 @@
                                   <input id="tag1-name" name="tag1-name" placeholder="タグ名" type="text">
                                 </div>
                               </div>
-                              <input id="tags1" name="tags1" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                              <textarea name="tags1" id="tags1" placeholder="シャープ(#)か空白区切りでタグを入力" rows="3"></textarea>
                             </div>
                             <div class="col-12" style="padding-bottom: 2em;">
                               <h4 style="color: #21b2a6">タグ2</h4>
@@ -47,7 +47,7 @@
                                   <input id="tag2-name" name="tag2-name" placeholder="タグ名" type="text">
                                 </div>
                               </div>
-                              <input id="tags2" name="tags2" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                              <textarea name="tags2" id="tags2" placeholder="シャープ(#)か空白区切りでタグを入力" rows="3"></textarea>
                             </div>
                             <div class="col-12" style="padding-bottom: 2em;">
                               <h4 style="color: #21b2a6">タグ3</h4>
@@ -56,7 +56,7 @@
                                   <input id="tag3-name" name="tag3-name" placeholder="タグ名" type="text">
                                 </div>
                               </div>
-                              <input id="tags1" name="tags1" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                              <textarea name="tags3" id="tags3" placeholder="シャープ(#)か空白区切りでタグを入力" rows="3"></textarea>
                             </div>
                             <div class="col-12" style="padding-bottom: 2em;">
                               <h4 style="color: #21b2a6">タグ4</h4>
@@ -65,7 +65,7 @@
                                   <input id="tag4-name" name="tag4-name" placeholder="タグ名" type="text">
                                 </div>
                               </div>
-                              <input id="tags4" name="tags4" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                              <textarea name="tags4" id="tags4" placeholder="シャープ(#)か空白区切りでタグを入力" rows="3"></textarea>
                             </div>
                           </div>
                         </div>
@@ -165,6 +165,7 @@
            */
           function setDefaultSettings(){
             $('#tag1-name').val('タグ1');
+            $('#tags1').val('#sample #sample2 #sample3');
             $('#tag2-name').val('タグ2');
             $('#tag3-name').val('タグ3');
             $('#tag4-name').val('タグ4');
