@@ -11,9 +11,17 @@ modules.helper = (function () {
    * のように各要素の先頭文字をタグつけする
    */
   module.getStrage = function(){
-    if(('localStorage' in window) && (window.localStorage !== null)) {
-      return localStorage;
-    } else {
+    try{
+      if(('localStorage' in window) && (window.localStorage !== null)) {
+        return localStorage;
+      } else {
+        toastr.error('ローカルストレージが使用できません。');
+        return {
+          getItem: function(key, val){},
+          setItem: function(key){},
+        }
+      }
+    }catch(e){
       toastr.error('ローカルストレージが使用できません。');
       return {
         getItem: function(key, val){},

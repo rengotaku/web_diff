@@ -205,14 +205,13 @@
             }else{
               const tagList = JSON.parse(storage.getItem(keys.tag_list));
               createSelectBox({
-                  zero: '',
                   one: tagList['tag1_name'],
                   two: tagList['tag2_name'],
                   three: tagList['tag3_name'],
                   four: tagList['tag4_name'],
                 },
                 'tag-list',
-                'zero');
+                'one');
 
               if(storage.getItem(keys.settings)){
                 const settings = JSON.parse(storage.getItem(keys.settings));
@@ -235,14 +234,13 @@
            */
           function setDefaultTagList(){
             createSelectBox({
-                zero: '',
                 one: 'タグ1',
                 two: 'タグ2',
                 three: 'タグ3',
                 four: 'タグ4',
               },
               'tag-list',
-              'zero');
+              'one');
           }
 
           /**
@@ -333,25 +331,20 @@
             var rawTagsStr = $('#tags').val();
             rawTagsStr = modules.helper.formatTag(rawTagsStr);
             var tags = null;
-            if($('#tag-list').val() != 'zero'){
-              if(storage.getItem(keys.tag_list)){
-                const tagList = JSON.parse(storage.getItem(keys.tag_list));
-                var selectTag = $('#tag-list').val();
-                if(selectTag == 'one'){
-                  tags = tagList['tags1'];
-                }else if(selectTag == 'two'){
-                  tags = tagList['tags2'];
-                }else if(selectTag == 'three'){
-                  tags = tagList['tags3'];
-                }else if(selectTag == 'four'){
-                  tags = tagList['tags4'];
-                }
-              }else{
-                tags = "";
+            if(storage.getItem(keys.tag_list)){
+              const tagList = JSON.parse(storage.getItem(keys.tag_list));
+              var selectTag = $('#tag-list').val();
+              if(selectTag == 'one'){
+                tags = tagList['tags1'];
+              }else if(selectTag == 'two'){
+                tags = tagList['tags2'];
+              }else if(selectTag == 'three'){
+                tags = tagList['tags3'];
+              }else if(selectTag == 'four'){
+                tags = tagList['tags4'];
               }
-            }else{
-              tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
             }
+            tags = rawTagsStr.substring(1, rawTagsStr.length).split('#');
 
             // タグからランダムに取得する
             if($('#select-tag-num').val() != ""){
