@@ -72,6 +72,15 @@ modules.storage_helper = (function () {
     storage.setItem(module.keys.tag_list, JSON.stringify(data));
   }
 
+  /**
+   * タグのデフォルト値を設定
+   */
+  module.getItem = function(storage, defaultVal=null){
+    var val = storage.getItem(keys.tag_list);
+    if(!val){ return defaultVal; }
+    
+    return JSON.parse(storage.getItem(keys.tag_list));
+  }
 
   return module;
 }());
