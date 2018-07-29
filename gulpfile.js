@@ -98,7 +98,7 @@ gulp.task('scss', ['images', 'font'], function() {
     postCssOpts.push(cssnano);
   }
 
-  return gulp.src([folder.src + 'assets/scss/origin/main.scss', folder.src + 'assets/scss/my_main.scss'])
+  return gulp.src([folder.src + 'assets/scss/origin/main.scss', folder.src + 'assets/scss/my_main.scss.css'])
     .pipe(sass({
       outputStyle: 'nested',
       imagePath: 'images/',

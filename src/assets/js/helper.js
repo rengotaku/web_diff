@@ -10,6 +10,24 @@ modules.helper = (function () {
    * abc defg hij -> [a]bc [d]efg [h]ij
    * のように各要素の先頭文字をタグつけする
    */
+  module.decorateEachChar = function(str, colorCodes){
+    var maxCodeNum = colorCodes.length - 1;
+    var count = 0;
+    var strAry = Array.from(str);
+    strAry.forEach(function(val,i,ar){
+      if(val.length == 0 || val.match(/\s/)){ return; }
+      var colorCode = colorCodes[count];
+      ar[i] = "<span style='color:#" + colorCode + "'>" + val + "</span>";
+      count = count++ >= maxCodeNum ? 0 : count;
+    });
+
+    return strAry.join('');
+  }
+
+  /**
+   * abc defg hij -> [a]bc [d]efg [h]ij
+   * のように各要素の先頭文字をタグつけする
+   */
   module.eachTopCharUpper = function(str, startTag, endTag){
     var strAry = str.split(' ');
     strAry.forEach(function(val,i,ar){

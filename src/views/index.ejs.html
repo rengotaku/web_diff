@@ -22,50 +22,46 @@
 
         <!-- Main -->
           <article id="main">
-            <section class="wrapper style5" style="padding-top: 2em;">
+            <section class="wrapper style5">
               <div class="inner">
 
                 <section>
                   <div class="row">
-                    <div class="col-12" style="padding-bottom: 0.5em;">
+                    <div class="col-12 pad-bottom-m">
                       <div class="row gtr-uniform">
                         <div class="col-12">
-                          <h4 style="color: #21b2a6">メッセージ<sub>##MSG##</sub></h4>
-                          <textarea name="msg" id="msg" placeholder="メッセージを入力" rows="3"></textarea>
+                          <h3>Caption<span class="sub-title">##CAP##</span></h4>
+                          <textarea name="msg" id="msg" placeholder="キャプションを入力" rows="3"></textarea>
                         </div>
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="col-12">
 												<ul class="icons" style="margin-bottom: 0.5em;">
-													<li id="option-open-btn"><a href="#" class="icon fa-arrow-circle-down" click="return false;"></a><b style="padding-left: 0.5em;">オプションを開く</b></li>
-													<li id="option-close-btn" style="display: none;"><a href="#" class="icon fa-arrow-circle-up" click="return false;"></a><b style="padding-left: 0.5em;">オプションを閉じる</b></li>
+													<li id="option-open-btn"><a href="#" class="icon fa-arrow-circle-down" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを開く</span></li>
+													<li id="option-close-btn" style="display: none;"><a href="#" class="icon fa-arrow-circle-up" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを閉じる</span></li>
 												</ul>
                       </div>
                     </div>
-                    <div id="option-area" style="display: none; padding-bottom: 2em;" class="col-12">
-                      <div class="row gtr-uniform">
+                    <div id="option-area" style="display: none; margin-top: 0.5em" class="col-12 pad-bottom-m">
+                      <div class="row gtr-uniform line-top line-bottom">
                         <div class="col-12">
-                          <h4 style="color: #21b2a6">テンプレート</h4>
+                          <h3>テンプレート</h4>
                           <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含めたテンプレートを記入してください。" rows="3"></textarea>
                         </div>
-                        <div class="col-12">
-                          <h4 style="color: #21b2a6">タグ<sub>##TAGS##</sub></h4>
-                          <input id="tags" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
-                          <br>
-                          <select id="tag-list" name="tag-list" >
+                        <div class="col-12 pad-bottom-s">
+                          <h3>タグ<span class="sub-title">##TAGS##</span></h3>
+                          <input id="tags" class="mar-bottom-s" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
+                          <select id="tag-list" class="mar-bottom-s" name="tag-list" >
                           </select>
                           <input type="hidden" name="tag-one" id="tag-one">
                           <input type="hidden" name="tag-two" id="tag-two">
                           <input type="hidden" name="tag-three" id="tag-three">
                           <input type="hidden" name="tag-four" id="tag-four">
-
-                          <br>
-
                           <input type="checkbox" name="random-order" id="random-order">
-                          <label for="random-order">順番をランダム</label>
+                          <label for="random-order" class="mar-bottom-s">順番をランダム</label>
                           <input type="checkbox" name="tag-per-line" id="tag-per-line">
-                          <label for="tag-per-line">改行して表示</label>
+                          <label for="tag-per-line" class="mar-bottom-s">改行して表示</label>
 
 	                        <div class="row">
 	                          <div class="col-4">
@@ -77,12 +73,12 @@
 	                        </div>
                         </div>
                         <div class="col-12">
-                          <h4 style="color: #21b2a6">空白改行の代わり<sub><span id="char-length">0</span>文字</sub></h4>
-                          <input id="new-line" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
-                          <div class="row">
+                          <h3>空白改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
+                          <input id="new-line" class="mar-bottom-s" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
+                          <div class="row pad-bottom-s">
                             <div class="col-5">
-                              <ul class="actions">
-                                <li><a href="#" id="blank-btn" class="make-btn button primary" onclick="return false;">全空白</a></li>
+                              <ul class="actions pad-bottom-m">
+                                <li><a href="#" id="blank-btn" class="make-btn button primary" onclick="return false;">空白</a></li>
                               </ul>
                             </div>
                           </div>
@@ -130,8 +126,8 @@
            * レイアウトの初期処理
            */
           function initLayout(){
-            var text = $('#header h1 a').text();
-            $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
+            // var text = $('#header h1 a').text();
+            // $('#header h1 a').html(modules.helper.decorateEachChar(text, ['405DE6','5851D8','833AB4','c13584','E1306C','FD1D1D','F56040','F77737','FCAF45','FFDC80']));
           };
 
           /**

@@ -7,7 +7,7 @@ modules.replace_helper = (function () {
   var module = {}
 
   module.marks = {
-    msg: "##MSG##",
+    msg: "##CAP##",
     tag: "##TAGS##",
   };
 
