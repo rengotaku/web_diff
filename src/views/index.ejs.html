@@ -22,7 +22,7 @@
 
         <!-- Main -->
           <article id="main">
-            <section class="wrapper style5" style="padding-top: 3em;">
+            <section class="wrapper style5" style="padding-top: 2em;">
               <div class="inner">
 
                 <section>
@@ -77,8 +77,15 @@
 	                        </div>
                         </div>
                         <div class="col-12">
-                          <h4 style="color: #21b2a6">空白改行の代わり<sub></sub></h4>
+                          <h4 style="color: #21b2a6">空白改行の代わり<sub><span id="char-length">0</span>文字</sub></h4>
                           <input id="new-line" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
+                          <div class="row">
+                            <div class="col-5">
+                              <ul class="actions">
+                                <li><a href="#" id="blank-btn" class="make-btn button primary" onclick="return false;">全空白</a></li>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -159,6 +166,15 @@
               $('#option-close-btn').css('display', 'none');
             });
 
+            $('#blank-btn').on('click', function(){
+              $('#new-line').val($('#new-line').val() + '　');
+              $('#char-length').text($('#new-line').val().length);
+            });
+
+            $('#new-line').on('input', function(){
+              $('#char-length').text($(this).val().length);
+            });
+
             $('#tag-list').on('change', function() {
               var selected = $(this).val();
               var tags = $('#tag-' + selected).val();
@@ -166,13 +182,16 @@
             });
 
             $('#make-msg').on('focus', function(){
-              if(execCopy($(this).val())){
-                toastr.success('メッセージをコピーしました。')
-              }else{
-                toastr.error('メッセージをコピーできませんでした。')
-              }
+              // if(execCopy($(this).val())){
+              //   toastr.success('メッセージをコピーしました。')
+              // }else{
+              //   toastr.error('メッセージをコピーできませんでした。')
+              // }
+
+              $(this).select();
 
               /**
+               * FIXME: 改行コードがコピーされない
                * コピーする
                * https://qiita.com/simiraaaa/items/2e7478d72f365aa48356
                */
@@ -228,7 +247,10 @@
             const settings = JSON.parse(storage.getItem(keys.settings));
 
             $('#template-msg').val(settings['template']);
+            
             $('#new-line').val(settings['new_line']);
+            $('#char-length').text($('#new-line').val().length);
+
             $('#tag-list').val(settings['tag_list']);
             $('#select-tag-num').val(settings['select_tag_num']);
             $('#tag-per-line').prop("checked", settings['tag_per_line']);
