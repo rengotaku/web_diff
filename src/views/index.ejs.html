@@ -111,9 +111,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
       <script>
-        const MSG_MARK = "##MSG##";
-        const TAG_MARK = "##TAGS##";
-
         const storage = modules.storage_helper.getStorage();
         const keys = modules.storage_helper.keys;
 
@@ -329,45 +326,15 @@
            * 記号の置換を行う
            */
           function replacer(str){
-            str = replaceMessage(str);
+            str = replace_helper.replaceMessage(str, $('#msg').val());
 
-            if(hasTags(str)){
-              str = replaceTags(str);
+            if(replace_helper.hasTags(str)){
+              str = replace_helper.replaceTags(str);
             }
 
-            str = replaceNewLine(str);
+            str = replace_helper.replaceNewLine(str, $('#new-line').val());
 
             return str;
-          }
-
-          /**
-           * メッセージを置換する
-           */
-          function replaceMessage(str){
-            var message = $('#msg').val();
-            return str.replace(new RegExp(MSG_MARK), message);
-          }
-
-          /**
-           * 改行を指定の文字列に変換
-           */
-          function replaceNewLine(str){
-            var newLine = $('#new-line').val();
-            var lines = str.split(/\r?\n/g);
-            lines.forEach(function(val, i, ar){
-              if(val.length == 0){
-                ar[i] = newLine;
-              }
-            });
-
-            return lines.join('\n');
-          }
-
-          /**
-           * タグを持っているか？
-           */
-          function hasTags(str){
-            return str.match(new RegExp(TAG_MARK));
           }
 
           /**
@@ -446,7 +413,7 @@
               tagsStr = '#' + tags.join(' #'); // #tag #tag...
             }
 
-            return str.replace(new RegExp(TAG_MARK), tagsStr);
+            return modules.replace_helper.replaceTags(str, tagsStr);
           }
 
           init();
