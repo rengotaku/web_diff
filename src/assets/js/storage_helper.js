@@ -47,6 +47,7 @@ modules.storage_helper = (function () {
       select_tag_num: "",
       tag_per_line: false,
       random_order: false,
+      emoji: "",
     }
 
     // 設定の保持

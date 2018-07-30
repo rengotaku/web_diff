@@ -9,6 +9,7 @@ modules.replace_helper = (function () {
   module.marks = {
     msg: "##CAP##",
     tag: "##TAGS##",
+    dot: "。",
   };
 
 
@@ -24,6 +25,27 @@ modules.replace_helper = (function () {
    */
   module.replaceTag = function(templateStr, tagStr){
     return templateStr.replace(new RegExp(module.marks.tag), tagStr);
+  }
+
+  /**
+   * 区切り文字を置換する
+   */
+  module.replaceDot = function(templateStr, emojiStr){
+    var emojis = stringToArray(emojiStr);
+
+    while(templateStr.match(new RegExp(module.marks.dot))){
+      var targetPosition = Math.floor(Math.random()*emojis.length);
+      var emoji = emojis[targetPosition];
+
+      templateStr = templateStr.replace(new RegExp(module.marks.dot), emoji);
+    }
+
+    // https://qiita.com/YusukeHirao/items/2f0fb8d5bbb981101be0
+    function stringToArray (str) {
+      return str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
+    }
+
+    return templateStr;
   }
 
   /**
