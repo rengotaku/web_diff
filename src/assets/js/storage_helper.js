@@ -41,7 +41,7 @@ modules.storage_helper = (function () {
    */
   module.setDefaultSettings = function(storage){
     var data = {
-      template: "##MSG##\n\n##TAGS##",
+      template: "##CAP##\n\n##TAGS##",
       new_line: "・",
       tag_list: "one",
       select_tag_num: "",

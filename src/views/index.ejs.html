@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-12">
                       <div class="col-12">
-												<ul class="icons" style="margin-bottom: 0.5em;">
+												<ul class="icons" style="margin-bottom: 1.0em;">
 													<li id="option-open-btn"><a href="#" class="icon fa-arrow-circle-down" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを開く</span></li>
 													<li id="option-close-btn" style="display: none;"><a href="#" class="icon fa-arrow-circle-up" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを閉じる</span></li>
 												</ul>
@@ -46,11 +46,11 @@
                     <div id="option-area" style="display: none; margin-top: 0.5em" class="col-12 pad-bottom-m">
                       <div class="row gtr-uniform line-top line-bottom">
                         <div class="col-12">
-                          <h3>テンプレート</h4>
-                          <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含めたテンプレートを記入してください。" rows="3"></textarea>
+                          <h3>Template</h4>
+                          <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含むテンプレートを記入してください。" rows="3"></textarea>
                         </div>
                         <div class="col-12 pad-bottom-s">
-                          <h3>タグ<span class="sub-title">##TAGS##</span></h3>
+                          <h3>TAG<span class="sub-title">##TAGS##</span></h3>
                           <input id="tags" class="mar-bottom-s" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
                           <select id="tag-list" class="mar-bottom-s" name="tag-list" >
                           </select>
@@ -73,7 +73,7 @@
 	                        </div>
                         </div>
                         <div class="col-12">
-                          <h3>空白改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
+                          <h3>改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
                           <input id="new-line" class="mar-bottom-s" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
                           <div class="row pad-bottom-s">
                             <div class="col-5">
@@ -322,13 +322,13 @@
            * 記号の置換を行う
            */
           function replacer(str){
-            str = replace_helper.replaceMessage(str, $('#msg').val());
+            str = modules.replace_helper.replaceMessage(str, $('#msg').val());
 
-            if(replace_helper.hasTags(str)){
-              str = replace_helper.replaceTags(str);
+            if(modules.replace_helper.hasTags(str)){
+              str = modules.replace_helper.replaceTag(str, $('#tags').val());
             }
 
-            str = replace_helper.replaceNewLine(str, $('#new-line').val());
+            str = modules.replace_helper.replaceNewLine(str, $('#new-line').val());
 
             return str;
           }
