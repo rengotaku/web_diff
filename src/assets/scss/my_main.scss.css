@@ -6,7 +6,8 @@
 $baseTitleSize: 0.8em;
 
 /* 色 */
-$baseFontColor: #262626;
+/*$baseFontColor: #262626;*/
+$baseFontColor: #003569;
 $baseBgColor: linear-gradient(-135deg, #E4A972, #9941D8);
 $baseBorderColor: #efefef;
 
@@ -34,6 +35,26 @@ body {
   .wrapper.style5 {
     padding-top: 2em;
     background-color: #fafafa;
+  }
+}
+
+#footer {
+  background: #fff;
+  color: $baseFontColor;
+  padding: 2em 0 1em 0;
+
+  ul.icons {
+    margin: 0 0 1em 0;
+
+    li {
+      a {
+        color: $baseFontColor;
+      }
+    }
+  }
+
+  .copyright {
+    color: $baseFontColor;    
   }
 }
 
