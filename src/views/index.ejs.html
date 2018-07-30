@@ -30,7 +30,7 @@
                     <div class="col-12 pad-bottom-m">
                       <div class="row gtr-uniform">
                         <div class="col-12">
-                          <h3>Caption<span class="sub-title">##CAP##</span></h4>
+                          <h3 class="title">Caption<span class="sub-title">##CAP##</span></h4>
                           <textarea name="msg" id="msg" placeholder="キャプションを入力" rows="3"></textarea>
                         </div>
                       </div>
@@ -46,11 +46,11 @@
                     <div id="option-area" style="display: none; margin-top: 0.5em" class="col-12 pad-bottom-m">
                       <div class="row gtr-uniform line-top line-bottom">
                         <div class="col-12">
-                          <h3>Template</h4>
+                          <h3 class="title">Template</h4>
                           <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含むテンプレートを記入してください。" rows="3"></textarea>
                         </div>
                         <div class="col-12 pad-bottom-s">
-                          <h3>TAG<span class="sub-title">##TAGS##</span></h3>
+                          <h3 class="title">TAG<span class="sub-title">##TAGS##</span></h3 class="title">
                           <input id="tags" class="mar-bottom-s" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
                           <select id="tag-list" class="mar-bottom-s" name="tag-list" >
                           </select>
@@ -58,8 +58,6 @@
                           <input type="hidden" name="tag-two" id="tag-two">
                           <input type="hidden" name="tag-three" id="tag-three">
                           <input type="hidden" name="tag-four" id="tag-four">
-                          <input type="checkbox" name="random-order" id="random-order">
-                          <label for="random-order" class="mar-bottom-s">順番をランダム</label>
                           <input type="checkbox" name="tag-per-line" id="tag-per-line">
                           <label for="tag-per-line" class="mar-bottom-s">改行して表示</label>
 
@@ -73,13 +71,13 @@
 	                        </div>
                         </div>
                         <div class="col-12 pad-bottom-s">
-                          <h3>改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
+                          <h3 class="title">改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
                           <input id="new-line" class="mar-bottom-s" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
                           <input type="checkbox" name="blank-chk" id="blank-chk">
                           <label for="blank-chk" class="mar-bottom-s">空白</label>
                         </div>
                         <div class="col-12">
-                          <h3>EMOJI<span class="sub-title">「。」を入力された絵文字に変換</span></h4>
+                          <h3 class="title">EMOJI<span class="sub-title">「。」を入力された絵文字に変換</span></h4>
                           <input id="emoji" class="mar-bottom-s" name="emoji" placeholder="絵文字を入力" type="text">
                         </div>
                       </div>
@@ -248,7 +246,6 @@
             $('#tag-list').val(settings['tag_list']);
             $('#select-tag-num').val(settings['select_tag_num']);
             $('#tag-per-line').prop("checked", settings['tag_per_line']);
-            $('#random-order').prop("checked", settings['random_order']);
 
             var tags = $('#tag-' + settings['tag_list']).val();
             $('#tags').val(tags);
@@ -285,7 +282,6 @@
               tag_list: $('#tag-list').val(),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
-              random_order: $('#random-order').prop('checked'),
               emoji: $('#emoji').val(),
             }
 
@@ -329,7 +325,7 @@
             str = modules.replace_helper.replaceMessage(str, $('#msg').val());
 
             if(modules.replace_helper.hasTags(str)){
-              str = modules.replace_helper.replaceTag(str, $('#tags').val());
+              str = replaceTags(str);
             }
 
             if($('#emoji').val().length > 0){
@@ -393,22 +389,6 @@
               tags = randomAry(tags, selectTagNum);
             }
 
-            // ランダムに配置する
-            if($('#random-order').prop('checked')){
-              function shuffleAry(ary) {
-                var i = ary.length;
-                while(i){
-                  var j = Math.floor(Math.random()*i);
-                  var t = ary[--i];
-                  ary[i] = ary[j];
-                  ary[j] = t;
-                }
-                return ary;
-              }
-
-              tags = shuffleAry(tags);
-            }
-
             var tagsStr = null;
             // タグを一行毎に出力する
             if($('#tag-per-line').prop('checked')){
@@ -417,7 +397,7 @@
               tagsStr = '#' + tags.join(' #'); // #tag #tag...
             }
 
-            return modules.replace_helper.replaceTags(str, tagsStr);
+            return modules.replace_helper.replaceTag(str, tagsStr);
           }
 
           init();
