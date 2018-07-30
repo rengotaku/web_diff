@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-12">
                           <h3 class="title">EMOJI<span class="sub-title">「。」を入力された絵文字に変換</span></h4>
-                          <input id="emoji" class="mar-bottom-s" name="emoji" placeholder="絵文字を入力" type="text">
+                          <input id="emoji" class="mar-bottom-s" name="emoji" placeholder="絵文字（📷）を入力" type="text">
                         </div>
                       </div>
                     </div>
@@ -282,7 +282,7 @@
               tag_list: $('#tag-list').val(),
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
-              emoji: $('#emoji').val(),
+              emoji: modules.helper.excludeBlank($('#emoji').val()),
             }
 
             // 設定の保持
@@ -328,8 +328,9 @@
               str = replaceTags(str);
             }
 
-            if($('#emoji').val().length > 0){
-              str = modules.replace_helper.replaceDot(str, $('#emoji').val());
+            var emoji = modules.helper.excludeBlank($('#emoji').val());
+            if(emoji.length > 0){
+              str = modules.replace_helper.replaceDot(str, emoji);
             }
 
             str = modules.replace_helper.replaceNewLine(str, $('#new-line').val());
