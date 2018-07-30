@@ -159,7 +159,7 @@
             });
 
             $('#blank-chk').on('click', function(){
-              $('#new-line').val('　　　　　　　　　　　　　');
+              $('#new-line').val('ㅤ'); // 透明な特殊記号
               $('#char-length').text($('#new-line').val().length);
 
               $('#new-line').prop("disabled", $(this).prop("checked"));
