@@ -32,6 +32,12 @@ body {
 #main {
   background-color: #fafafa;
 
+  header {
+    background-image: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(../../images/banner.jpg);
+    padding: 3em 3em 3em 3em;
+  }
+
+
   .wrapper.style5 {
     padding-top: 2em;
     background-color: #fafafa;
@@ -48,6 +54,8 @@ body {
 
     li {
       a {
+        color: $baseFontColor;
+      } a:hover {
         color: $baseFontColor;
       }
     }

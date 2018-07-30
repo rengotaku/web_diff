@@ -125,7 +125,7 @@ gulp.task( 'css.image', ['scss'], function() {
 gulp.task('watch', function() {
 
   // image changes
-  gulp.watch(folder.src + 'assets/images/**/*', ['images']);
+  gulp.watch(folder.src + 'images/**/*', ['images']);
 
   // html changes
   gulp.watch(folder.src + 'views/**/*', ['html']);
