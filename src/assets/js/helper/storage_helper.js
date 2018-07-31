@@ -41,6 +41,15 @@ modules.storage_helper = (function () {
   }
 
   /**
+   * ローカルストレージを安全に取り出す
+   */
+  module.initData = function(storage){
+    for (key in module.keys) {
+      storage.set(module.keys[key], null);
+    }
+  }
+
+  /**
    * 基本値デフォルト値を設定
    */
   module.setDefaultSettings = function(storage){

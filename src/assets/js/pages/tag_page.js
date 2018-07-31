@@ -57,7 +57,7 @@ modules.pages.tag = (function () {
 
       page.saveSettings();
 
-      toastr.info('タグを保存しました。');
+      toastr.success('タグを保存しました。');
     });
   };
 
@@ -95,7 +95,7 @@ modules.pages.tag = (function () {
       tags3: $('#tags3').val(),
       tag4_name: $('#tag4-name').val(),
       tags4: $('#tags4').val(),
-  }
+    }
 
     // 設定の保持
     storage.set(keys.tag_list, JSON.stringify(settings));
