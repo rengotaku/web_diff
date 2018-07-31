@@ -10,34 +10,33 @@ modules.storage_helper = (function () {
     v1_0_0: {name: "v1.0.0"},
   };
 
+  module.namespace = "icm";
+
   module.keys = {
-    settings: "settings",
-    tag_list: "tag_list",
-    version: module.versions.v1_0_0,
+    settings: module.namespace + ".settings",
+    tag_list: module.namespace + ".tag_list",
+    version: module.namespace + ".version",
   };
+
+  module.version = module.versions.v1_0_0.name;
 
   /**
    * ローカルストレージを安全に取り出す
    */
   module.getStorage = function(){
     try{
-      if(!('localStorage' in window) && (window.localStorage == null)) {
-        throw new Error('LSが使用できません。');
+      const storage = $.localStorage;
+
+      for (key in module.keys) {
+        if(!storage.isSet(module.keys[key])){
+          storage.set(module.keys[key], null);
+        }
       }
 
-      return localStorage;
+      return storage;
     }catch(e){
       console.log(e);
-      // FIXME: ここで、このエラーを出すのは、いけすかない
-      toastr.error('LSが使用できないため、保存はできません。');
-
-      // FIXME: 使えないなら動作を止めた方がよい？
-      return {
-        getItem: function(key, val){},
-        setItem: function(key){},
-        removeItem: function(key){},
-        clearItem: function(){},
-      }
+      return null;
     }
   }
 
@@ -57,7 +56,7 @@ modules.storage_helper = (function () {
     }
 
     // 設定の保持
-    storage.setItem(module.keys.settings, JSON.stringify(data));
+    storage.set(module.keys.settings, JSON.stringify(data));
   }
 
   /**
@@ -73,11 +72,10 @@ modules.storage_helper = (function () {
       tags3: "",
       tag4_name: "タグ4",
       tags4: "",
-      version: module.keys.version,
     }
 
     // 設定の保持
-    storage.setItem(module.keys.tag_list, JSON.stringify(data));
+    storage.set(module.keys.tag_list, JSON.stringify(data));
   }
 
   /**

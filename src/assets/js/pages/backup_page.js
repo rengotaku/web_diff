@@ -7,7 +7,16 @@ modules.pages = modules.pages || {};
 modules.pages.backup = (function () {
   var page = {}
 
-  const storage = modules.storage_helper.getStorage();
+//   var storage = null;
+//   try{
+//     ns=$.initNamespaceStorage('icm');
+//     storage = ns.localStorage;
+//   }catch(e){
+//     console.log(e);
+//     // FIXME: ここで、このエラーを出すのは、いけすかない
+//     toastr.error('ローカルストレージが使用できないため、機能が正しく動きません。');
+//   }
+// console.log(storage.keys());
   const keys = modules.storage_helper.keys;
 
   page.init = function(){

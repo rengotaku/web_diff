@@ -7,7 +7,14 @@ modules.pages = modules.pages || {};
 modules.pages.tag = (function () {
   var page = {}
 
-  const storage = modules.storage_helper.getStorage();
+  var storage = null;
+  try{
+    storage = $.localStorage;
+  }catch(e){
+    console.log(e);
+    toastr.error('ローカルストレージが使用できないため、機能が正しく動きません。');
+  }
+
   const keys = modules.storage_helper.keys;
 
   page.init = function(){
@@ -58,12 +65,12 @@ modules.pages.tag = (function () {
    * ストレージの状態を画面に反映
    */
   page.loadSetting = function(){
-    if(!storage.getItem(keys.tag_list)){
+    if(!storage.isSet(keys.tag_list)){
       modules.storage_helper.setDefaultTags(storage);
       toastr.info('初期値を設定しました。');
     }
 
-    const tagList = JSON.parse(storage.getItem(keys.tag_list));
+    const tagList = JSON.parse(storage.get(keys.tag_list));
 
     $('#tag1-name').val(tagList['tag1_name']);
     $('#tags1').val(tagList['tags1']);
@@ -88,11 +95,10 @@ modules.pages.tag = (function () {
       tags3: $('#tags3').val(),
       tag4_name: $('#tag4-name').val(),
       tags4: $('#tags4').val(),
-      version: modules.storage_helper.keys.version,
   }
 
     // 設定の保持
-    storage.setItem(keys.tag_list, JSON.stringify(settings));
+    storage.set(keys.tag_list, JSON.stringify(settings));
   }
 
   return page;

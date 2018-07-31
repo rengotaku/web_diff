@@ -7,10 +7,15 @@ modules.pages = modules.pages || {};
 modules.pages.index = (function () {
   var page = {}
 
-  const storage = modules.storage_helper.getStorage();
+  var storage = null;
+  try{
+    storage = $.localStorage;
+  }catch(e){
+    console.log(e);
+    toastr.error('ローカルストレージが使用できないため、機能が正しく動きません。');
+  }
+
   const keys = modules.storage_helper.keys;
-// console.log(storage.getItem(keys.settings));
-// console.log(storage.getItem(keys.tag_list));
 
   page.init = function(){
     page.initLayout();
@@ -112,11 +117,11 @@ modules.pages.index = (function () {
    * ストレージの状態を画面に反映
    */
   page.loadSetting = function(){
-    if(!storage.getItem(keys.tag_list)){
+    if(!storage.isSet(keys.tag_list)){
       modules.storage_helper.setDefaultTags(storage);
       toastr.info('タグリストに初期値を設定しました。');
     }
-    const tagList = JSON.parse(storage.getItem(keys.tag_list));
+    const tagList = JSON.parse(storage.get(keys.tag_list));
     page.createSelectBox({
         one: tagList['tag1_name'],
         two: tagList['tag2_name'],
@@ -131,12 +136,12 @@ modules.pages.index = (function () {
     $('#tag-three').val(tagList['tags3']);
     $('#tag-four').val(tagList['tags4']);
 
-    if(!storage.getItem(keys.settings)){
+    if(!storage.isSet(keys.settings)){
       modules.storage_helper.setDefaultSettings(storage);
       toastr.info('基本値に初期値を設定しました。');
     }
 
-    const settings = JSON.parse(storage.getItem(keys.settings));
+    const settings = JSON.parse(storage.get(keys.settings));
 
     $('#template-msg').val(settings['template']);
 
@@ -146,6 +151,7 @@ modules.pages.index = (function () {
     $('#tag-list').val(settings['tag_list']);
     $('#select-tag-num').val(settings['select_tag_num']);
     $('#tag-per-line').prop("checked", settings['tag_per_line']);
+    $('#blank-chk').prop("checked", settings['blank_chk']);
 
     var tags = $('#tag-' + settings['tag_list']).val();
     $('#tags').val(tags);
@@ -178,23 +184,22 @@ modules.pages.index = (function () {
     var settings = {
       template: $('#template-msg').val(),
       new_line: $('#new-line').val(),
-      // tags: modules.helper.formatTag($('#tags').val()),
       tag_list: $('#tag-list').val(),
       select_tag_num: $('#select-tag-num').val(),
       tag_per_line: $('#tag-per-line').prop('checked'),
+      blank_chk: $('#blank-chk').prop('checked'),
       emoji: modules.helper.excludeBlank($('#emoji').val()),
-      version: modules.storage_helper.keys.version,
     }
 
     // 設定の保持
-    storage.setItem(keys.settings, JSON.stringify(settings));
+    storage.set(keys.settings, JSON.stringify(settings));
   }
 
   /**
    * タグをストレージに保存する
    */
   page.updateTags = function(){
-    const tagList = JSON.parse(storage.getItem(keys.tag_list));
+    const tagList = JSON.parse(storage.get(keys.tag_list));
 
     var strTags = modules.helper.formatTag($('#tags').val());
 
@@ -215,10 +220,8 @@ modules.pages.index = (function () {
         console.log('Jesus!!');
     }
 
-    tagList['version'] = modules.storage_helper.keys.version;
-
     // 設定の保持
-    storage.setItem(keys.tag_list, JSON.stringify(tagList));
+    storage.set(keys.tag_list, JSON.stringify(tagList));
   }
 
   /**
@@ -248,8 +251,8 @@ modules.pages.index = (function () {
     var rawTagsStr = $('#tags').val();
     rawTagsStr = modules.helper.formatTag(rawTagsStr);
     var tags = null;
-    if(storage.getItem(keys.tag_list)){
-      const tagList = JSON.parse(storage.getItem(keys.tag_list));
+    if(!storage.isSet(keys.tag_list)){
+      const tagList = JSON.parse(storage.get(keys.tag_list));
       var selectTag = $('#tag-list').val();
       if(selectTag == 'one'){
         tags = tagList['tags1'];
