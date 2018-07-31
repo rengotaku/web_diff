@@ -58,53 +58,11 @@
       </div>
 
     <!-- Scripts -->
-      <script src="../assets/js/main.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+      <%- include('layout/script.ejs.html') -%>
 
       <script>
         (function($) {
-          const storage = modules.storage_helper.getStorage();
-          const keys = modules.storage_helper.keys;
-
-          // FIXME: 書き直す
-          function init(){
-            initLayout();
-
-            initAction();
-
-            loadSetting();
-          }
-
-          /**
-           * レイアウトの初期処理
-           */
-          function initLayout(){
-            // var text = $('#header h1 a').text();
-            // $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
-          };
-
-          /**
-           * FIXME
-           * ストレージの状態を画面に反映
-           */
-          function loadSetting(){
-          }
-
-          /**
-           * FIXME
-           * レイアウトの初期処理
-           */
-          function initAction(){
-          };
-
-          /**
-           * FIXME
-           * 設定をストレージに保存する
-           */
-          function saveSettings(){
-          }
-
-          init();
+          modules.pages.backup.init();
         })(jQuery);
       </script>
 

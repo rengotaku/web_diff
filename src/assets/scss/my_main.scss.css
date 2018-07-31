@@ -2,6 +2,8 @@
  * オリジナルのCSS
  */
 
+@import 'lib/toastr';
+
 /* サイズ */
 $baseTitleSize: 0.8em;
 

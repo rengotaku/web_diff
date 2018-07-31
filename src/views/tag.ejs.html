@@ -7,10 +7,7 @@
 <html>
   <head>
     <title>タグ | <%= title.jp %></title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <%- include('layout/common_head.ejs.html') -%>
   </head>
   <body class="is-preload">
 
@@ -89,100 +86,11 @@
       </div>
 
     <!-- Scripts -->
-      <script src="../assets/js/main.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+      <%- include('layout/script.ejs.html') -%>
 
       <script>
         (function($) {
-          const storage = modules.storage_helper.getStorage();
-          const keys = modules.storage_helper.keys;
-
-          function init(){
-            initLayout();
-
-            initAction();
-
-            loadSetting();
-          }
-
-          /**
-           * レイアウトの初期処理
-           */
-          function initLayout(){
-            // var text = $('#header h1 a').text();
-            // $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
-          };
-
-          /**
-           * イベントの初期処理
-           */
-          function initAction(){
-            $('#regist-btn').on('click', function(){
-              $('#tag1-name').val(getVal($('#tag1-name').val(), 'タグ1'));
-              $('#tags1').val(modules.helper.formatTag($('#tags1').val()));
-
-              $('#tag2-name').val(getVal($('#tag2-name').val(), 'タグ2'));
-              $('#tags2').val(modules.helper.formatTag($('#tags2').val()));
-
-              $('#tag3-name').val(getVal($('#tag3-name').val(), 'タグ3'));
-              $('#tags3').val(modules.helper.formatTag($('#tags3').val()));
-
-              $('#tag4-name').val(getVal($('#tag4-name').val(), 'タグ4'));
-              $('#tags4').val(modules.helper.formatTag($('#tags4').val()));
-
-              function getVal(val, defaultVal){
-                if(!val || val.length == 0){ return defaultVal; }
-                return val;
-              }
-
-              saveSettings();
-
-              toastr.info('タグを保存しました。');
-            });
-          };
-
-          /**
-           * ストレージの状態を画面に反映
-           */
-          function loadSetting(){
-            if(!storage.getItem(keys.tag_list)){
-              modules.strage_helper.setDefaultTags(storage);
-              toastr.info('初期値を設定しました。');
-            }
-
-            const tagList = JSON.parse(storage.getItem(keys.tag_list));
-
-            $('#tag1-name').val(tagList['tag1_name']);
-            $('#tags1').val(tagList['tags1']);
-            $('#tag2-name').val(tagList['tag2_name']);
-            $('#tags2').val(tagList['tags2']);
-            $('#tag3-name').val(tagList['tag3_name']);
-            $('#tags3').val(tagList['tags3']);
-            $('#tag4-name').val(tagList['tag4_name']);
-            $('#tags4').val(tagList['tags4']);
-          }
-
-          /**
-           * 設定をストレージに保存する
-           */
-          function saveSettings(){
-            var settings = {
-              tag1_name: $('#tag1-name').val(),
-              tags1: $('#tags1').val(),
-              tag2_name: $('#tag2-name').val(),
-              tags2: $('#tags2').val(),
-              tag3_name: $('#tag3-name').val(),
-              tags3: $('#tags3').val(),
-              tag4_name: $('#tag4-name').val(),
-              tags4: $('#tags4').val(),
-              version: modules.storage_helper.keys.version,
-          }
-
-            // 設定の保持
-            storage.setItem(keys.tag_list, JSON.stringify(settings));
-          }
-
-          init();
+          modules.pages.tag.init();
         })(jQuery);
       </script>
 

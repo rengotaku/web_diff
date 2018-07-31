@@ -7,10 +7,7 @@
 <html>
   <head>
     <title>アバウト | <%= title.jp %></title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <%- include('layout/common_head.ejs.html') -%>
   </head>
   <body class="is-preload">
 
@@ -105,24 +102,10 @@ model: @xxx
       </div>
 
     <!-- Scripts -->
-      <script src="../assets/js/main.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+      <%- include('layout/script.ejs.html') -%>
 
       <script>
         (function($) {
-          function init(){
-            initLayout();
-          }
-
-          /**
-           * レイアウトの初期処理
-           */
-          function initLayout(){
-            // var text = $('#header h1 a').text();
-            // $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
-          };
-
-          init();
         })(jQuery);
       </script>
 

@@ -86,7 +86,7 @@ modules.storage_helper = (function () {
   module.getItem = function(storage, defaultVal=null){
     var val = storage.getItem(keys.tag_list);
     if(!val){ return defaultVal; }
-    
+
     return JSON.parse(storage.getItem(keys.tag_list));
   }
 
