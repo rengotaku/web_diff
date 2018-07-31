@@ -76,7 +76,7 @@
                           <input type="checkbox" name="blank-chk" id="blank-chk">
                           <label for="blank-chk" class="mar-bottom-s">空白</label>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 pad-bottom-m">
                           <h3 class="title">EMOJI<span class="sub-title">「。」を入力された絵文字に変換</span></h4>
                           <input id="emoji" class="mar-bottom-s" name="emoji" placeholder="絵文字（📷）を入力" type="text">
                         </div>
@@ -283,6 +283,7 @@
               select_tag_num: $('#select-tag-num').val(),
               tag_per_line: $('#tag-per-line').prop('checked'),
               emoji: modules.helper.excludeBlank($('#emoji').val()),
+              version: modules.storage_helper.keys.version,
             }
 
             // 設定の保持
@@ -313,6 +314,8 @@
               default:
                 console.log('Jesus!!');
             }
+
+            tagList['version'] = modules.storage_helper.keys.version;
 
             // 設定の保持
             storage.setItem(keys.tag_list, JSON.stringify(tagList));

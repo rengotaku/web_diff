@@ -6,9 +6,14 @@ var modules = modules || {};
 modules.storage_helper = (function () {
   var module = {}
 
+  module.versions = {
+    v1_0_0: {name: "v1.0.0"},
+  };
+
   module.keys = {
     settings: "settings",
     tag_list: "tag_list",
+    version: module.versions.v1_0_0,
   };
 
   /**
@@ -48,6 +53,7 @@ modules.storage_helper = (function () {
       tag_per_line: false,
       random_order: false,
       emoji: "",
+      version: module.keys.version,
     }
 
     // 設定の保持
@@ -67,6 +73,7 @@ modules.storage_helper = (function () {
       tags3: "",
       tag4_name: "タグ4",
       tags4: "",
+      version: module.keys.version,
     }
 
     // 設定の保持

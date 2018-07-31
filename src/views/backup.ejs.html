@@ -6,11 +6,8 @@
 -->
 <html>
   <head>
-    <title>タグ | <%= title.jp %></title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <title>バックアップ | <%= title.jp %></title>
+    <%- include('layout/common_head.ejs.html') -%>
   </head>
   <body class="is-preload">
 
@@ -97,6 +94,7 @@
           const storage = modules.storage_helper.getStorage();
           const keys = modules.storage_helper.keys;
 
+          // FIXME: 書き直す
           function init(){
             initLayout();
 
