@@ -174,16 +174,15 @@
             });
 
             $('#make-msg').on('focus', function(){
-              // if(execCopy($(this).val())){
-              //   toastr.success('メッセージをコピーしました。')
-              // }else{
-              //   toastr.error('メッセージをコピーできませんでした。')
-              // }
+              if(execCopy($(this).val())){
+                toastr.success('メッセージをコピーしました。')
+              }else{
+                toastr.error('メッセージをコピーできませんでした。')
+              }
 
-              $(this).select();
+              // $(this).select();
 
               /**
-               * FIXME: 改行コードがコピーされない
                * コピーする
                * https://qiita.com/simiraaaa/items/2e7478d72f365aa48356
                */
@@ -239,7 +238,7 @@
             const settings = JSON.parse(storage.getItem(keys.settings));
 
             $('#template-msg').val(settings['template']);
-            
+
             $('#new-line').val(settings['new_line']);
             $('#char-length').text($('#new-line').val().length);
 

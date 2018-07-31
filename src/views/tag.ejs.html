@@ -100,8 +100,23 @@
           function init(){
             initLayout();
 
-            loadSetting();
+            initAction();
 
+            loadSetting();
+          }
+
+          /**
+           * レイアウトの初期処理
+           */
+          function initLayout(){
+            // var text = $('#header h1 a').text();
+            // $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
+          };
+
+          /**
+           * イベントの初期処理
+           */
+          function initAction(){
             $('#regist-btn').on('click', function(){
               $('#tag1-name').val(getVal($('#tag1-name').val(), 'タグ1'));
               $('#tags1').val(modules.helper.formatTag($('#tags1').val()));
@@ -124,15 +139,6 @@
 
               toastr.info('タグを保存しました。');
             });
-
-          }
-
-          /**
-           * レイアウトの初期処理
-           */
-          function initLayout(){
-            // var text = $('#header h1 a').text();
-            // $('#header h1 a').html(modules.helper.eachTopCharUpper(text, '<span style="color: #21b2a6">', '</span>'));
           };
 
           /**
