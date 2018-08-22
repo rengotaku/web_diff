@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>vue_pager</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/3.4.0/diff.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html-ui.min.js"></script>
+  </head>
+<body>
+  <div>
+    <div style="float: left;">
+      <textarea id="txt1" name="txt1" rows="4" cols="40">ここに感想を記入してください。</textarea>
+    </div>
+    <div style="float: left;">
+      <textarea id="txt2" name="txt2" rows="4" cols="40">ここに感想を記入してください。</textarea>
+    </div>
+  </div>
+  <br>
+  <a href="#" id="btn-exec">比較する</a>
+  <select class="options-label-value" id="diff-url-options-output-format" name="outputFormat">
+    <option value="line-by-line" selected="">Line by Line</option>
+    <option value="side-by-side">Side by Side</option>
+  </select>
+  <br><br><br>
+  <div>
+    <div id="app">
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      $('#btn-exec').on('click', function(){
+        const text1 = $('#txt1').val();
+        const text2 = $('#txt2').val();
+        const outputFormat = $('#diff-url-options-output-format').val();
+
+        const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
+console.log(unifiedDiff);
+        const diff2htmlUi = new Diff2HtmlUI({diff: unifiedDiff});
+        diff2htmlUi.draw('#app', {inputFormat: 'json', showFiles: true, matching: 'lines', outputFormat: outputFormat});
+      });
+  });
+  </script>
+</body>
+</html>
