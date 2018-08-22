@@ -1,0 +1,131 @@
+/**
+ * オリジナルのCSS
+ */
+
+@import 'lib/toastr';
+
+/* サイズ */
+$baseTitleSize: 0.8em;
+
+/* 色 */
+/*$baseFontColor: #262626;*/
+$baseFontColor: #003569;
+$baseBgColor: linear-gradient(-135deg, #E4A972, #9941D8);
+$baseBorderColor: #efefef;
+
+/* 幅 */
+$basePaddingSmall: 0.3em;
+$basePaddingMiddle: 0.5em;
+$basePaddingLarge: 0.8em;
+
+/* Main */
+
+body {
+  color: #262626;
+}
+
+#header {
+  background: $baseBgColor;
+  a {
+    color: #fff;
+  }
+}
+
+#main {
+  background-color: #fafafa;
+
+  header {
+    background-image: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(../../images/banner.jpg);
+    padding: 3em 3em 3em 3em;
+  }
+
+
+  .wrapper.style5 {
+    padding-top: 2em;
+    background-color: #fafafa;
+  }
+}
+
+#footer {
+  background: #fff;
+  color: $baseFontColor;
+  padding: 2em 0 1em 0;
+
+  ul.icons {
+    margin: 0 0 1em 0;
+
+    li {
+      a {
+        color: $baseFontColor;
+      } a:hover {
+        color: $baseFontColor;
+      }
+    }
+  }
+
+  .copyright {
+    color: $baseFontColor;    
+  }
+}
+
+#menu {
+  background: $baseBgColor;
+  a {
+    color: #fff;
+  }
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: $baseFontColor;
+}
+
+h3.title {
+  font-size: $baseTitleSize;
+}
+
+/* Detail */
+
+.line-top {
+  border-top: 1px solid $baseBorderColor;
+}
+.line-bottom {
+  border-bottom: 1px solid $baseBorderColor;
+}
+
+.title {
+  font-size: $baseTitleSize;
+}
+
+.sub-title {
+  padding-left: 1em;
+  font-size: 0.5em;
+  letter-spacing: 0.2em;
+}
+
+.button.primary {
+  background: $baseBgColor;
+}
+
+.pad-bottom-s {
+  padding-bottom: $basePaddingSmall;
+}
+.pad-bottom-m {
+  padding-bottom: $basePaddingMiddle;
+}
+.pad-bottom-l {
+  padding-bottom: $basePaddingLarge;
+}
+
+.mar-bottom-s {
+  margin-bottom: $basePaddingSmall;
+}
+.pad-bottom-m {
+  margin-bottom: $basePaddingMiddle;
+}
+.pad-bottom-l {
+  margin-bottom: $basePaddingLarge;
+}
+
+.pad-top-sm {
+  padding-bottom: $basePaddingSmall;
+}

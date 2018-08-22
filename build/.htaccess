@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteRule ^$ /index.html
+RewriteCond %{REQUEST_URI} !^/html/.+$
+RewriteRule ^(.+\.html)$ html/$1 [L]
