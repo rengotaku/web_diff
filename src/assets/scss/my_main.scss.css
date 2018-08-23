@@ -3,52 +3,31 @@
  */
 
 @import 'lib/toastr';
+@import 'lib/animate';
+@import 'lib/bootstrap';
+@import 'lib/flexslider';
+@import 'lib/icomoon';
+@import 'lib/magnific-popup';
+@import 'lib/style';
 
 /* サイズ */
-$baseTitleSize: 0.8em;
+/*$baseTitleSize: 0.8em;*/
 
 /* 色 */
 /*$baseFontColor: #262626;*/
-$baseFontColor: #003569;
+/*$baseFontColor: #003569;
 $baseBgColor: linear-gradient(-135deg, #E4A972, #9941D8);
 $baseBorderColor: #efefef;
-
+*/
 /* Main */
 
-body#my-override {
-  color: $baseFontColor;
-  background-color: #fafafa;
+#fh5co-contact {
+  padding: 1em 0; 
 }
 
-#header {
-  background: $baseBgColor;
-
-  h1 {
-    padding-left: 0.5em;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
-}
-
-#main {
-  background-color: #fafafa;
-}
-
-#footer {
-  background: #fff;
-  color: $baseFontColor;
-  padding: 2em 0 1em 0;
-
-  a {
-    color: $baseFontColor;
-  } a:hover {
-    color: $baseFontColor;
-  }
-
-  .copyright {
-    color: $baseFontColor;
+/* diffの微調整 */
+#app{
+  .d2h-wrapper .d2h-file-wrapper .d2h-files-diff .d2h-file-side-diff {
+    margin-right: -10px;
   }
 }

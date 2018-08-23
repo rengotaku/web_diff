@@ -1,108 +1,116 @@
 <!DOCTYPE HTML>
-<!--
-  Spectral by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
-    <title>トップ | <%= title.jp %></title>
+    <title>DIFF | <%= title.jp %></title>
     <%- include('layout/common_head.ejs.html') -%>
+
+  <!-- 
+  //////////////////////////////////////////////////////
+
+  FREE HTML5 TEMPLATE 
+  DESIGNED & DEVELOPED by FreeHTML5.co
+    
+  Website:    http://freehtml5.co/
+  Email:      info@freehtml5.co
+  Twitter:    http://twitter.com/fh5co
+  Facebook:     https://www.facebook.com/fh5co
+
+  //////////////////////////////////////////////////////
+   -->
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">  -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/3.4.0/diff.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/diff2html/2.3.3/diff2html-ui.min.js"></script>
+
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
   </head>
-  <body class="is-preload">
+  <body>
+    
+  <div class="fh5co-loader"></div>
+  
+  <div id="page">
+<!-- Header -->
+  <%- include('layout/header.ejs.html') -%>
 
-    <!-- Page Wrapper -->
-      <div id="page-wrapper">
-
-        <!-- Header -->
-          <%- include('layout/header.ejs.html') -%>
-
-        <!-- Main -->
-          <article id="main">
-            <section class="wrapper style5">
-              <div class="inner">
-
-                <section>
-                  <div class="row">
-                    <div class="col-12 pad-bottom-m">
-                      <div class="row gtr-uniform">
-                        <div class="col-12">
-                          <h3 class="title">Caption<span class="sub-title">##CAP##</span></h4>
-                          <textarea name="msg" id="msg" placeholder="キャプションを入力" rows="3"></textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="col-12">
-												<ul class="icons" style="margin-bottom: 1.0em;">
-													<li id="option-open-btn"><a href="#" class="icon fa-arrow-circle-down" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを開く</span></li>
-													<li id="option-close-btn" style="display: none;"><a href="#" class="icon fa-arrow-circle-up" click="return false;"></a><span class="title" style="padding-left: 0.5em;">オプションを閉じる</span></li>
-												</ul>
-                      </div>
-                    </div>
-                    <div id="option-area" style="display: none; margin-top: 0.5em" class="col-12 pad-bottom-m">
-                      <div class="row gtr-uniform line-top line-bottom">
-                        <div class="col-12">
-                          <h3 class="title">Template</h4>
-                          <textarea name="template-msg" id="template-msg" placeholder="特殊記号などを含むテンプレートを記入してください。" rows="3"></textarea>
-                        </div>
-                        <div class="col-12 pad-bottom-s">
-                          <h3 class="title">TAG<span class="sub-title">##TAGS##</span></h3 class="title">
-                          <input id="tags" class="mar-bottom-s" name="tags" placeholder="シャープ(#)か空白区切りでタグを入力" type="text">
-                          <select id="tag-list" class="mar-bottom-s" name="tag-list" >
-                          </select>
-                          <input type="hidden" name="tag-one" id="tag-one">
-                          <input type="hidden" name="tag-two" id="tag-two">
-                          <input type="hidden" name="tag-three" id="tag-three">
-                          <input type="hidden" name="tag-four" id="tag-four">
-                          <input type="checkbox" name="tag-per-line" id="tag-per-line">
-                          <label for="tag-per-line" class="mar-bottom-s">改行して表示</label>
-
-	                        <div class="row">
-	                          <div class="col-4">
-	                            <input id="select-tag-num" name="select-tag-num" placeholder="個数" type="text">
-	                          </div>
-	                          <div class="col-3">
-	                            <sub>個を選択</sub>
-	                          </div>
-	                        </div>
-                        </div>
-                        <div class="col-12 pad-bottom-s">
-                          <h3 class="title">改行の代わり<span class="sub-title"><span id="char-length">0</span>文字</span></h4>
-                          <input id="new-line" class="mar-bottom-s" name="new-line" placeholder="例:「・」「.」「　(大文字空白)」などを入力" type="text">
-                          <input type="checkbox" name="blank-chk" id="blank-chk">
-                          <label for="blank-chk" class="mar-bottom-s">空白</label>
-                        </div>
-                        <div class="col-12 pad-bottom-m">
-                          <h3 class="title">EMOJI<span class="sub-title">「。」を入力された絵文字に変換</span></h4>
-                          <input id="emoji" class="mar-bottom-s" name="emoji" placeholder="絵文字（📷）を入力" type="text">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12" style="padding-bottom: 2em;">
-                      <ul class="actions fit" style="margin-bottom: 0.5em;">
-                        <li><a href="#" id="make-btn" class="make-btn button primary fit" onclick="return false;">作成</a></li>
-                      </ul>
-                      <textarea name="make-msg" id="make-msg" placeholder="作成されたメッセージ" onclick="this.select();" rows="5"></textarea>
-                    </div>
-                  </div>
-                </section>
+  <div id="fh5co-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <textarea class="form-control" rows="10" id="txt1" name="txt1" placeholder="テキストをはりつけて！"></textarea>
               </div>
-            </section>
-          </article>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <textarea class="form-control" rows="10" id="txt2" name="txt2" placeholder="テキストをはりつけて！"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label for="outputFormat" class="col-sm-2">表示方式</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="diff-url-options-output-format" name="outputFormat">
+                <option value="line-by-line">Line by Line</option>
+                <option value="side-by-side" selected>Side by Side</option>
+              </select>
+            </div>
+          </div>
 
-        <!-- Footer -->
-          <%- include('layout/footer.ejs.html') -%>
-
+          <div class="form-group">
+            <a href="#app">
+              <button type="button" id="btn-exec" class="btn btn-primary">比較する</button>
+            </a>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
 
-    <!-- Scripts -->
-      <%- include('layout/script.ejs.html') -%>
+  </div>
 
-      <script>
-        (function($) {
-          modules.pages.index.init();
-        })(jQuery);
-      </script>
+  <div>
+    <div id="app" name="app">
+    </div>
+  </div>
+
+<!-- Footer -->
+  <%- include('layout/footer.ejs.html') -%>
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+  </div>
+
+<!-- Scripts -->
+  <%- include('layout/script.ejs.html') -%>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      $('#btn-exec').on('click', function(){
+        const text1 = $('#txt1').val();
+        const text2 = $('#txt2').val();
+        const outputFormat = $('#diff-url-options-output-format').val();
+
+        const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
+
+        const diff2htmlUi = new Diff2HtmlUI({diff: unifiedDiff});
+        diff2htmlUi.draw('#app', {inputFormat: 'json', showFiles: true, matching: 'lines', outputFormat: outputFormat});
+        $('.d2h-file-list-wrapper').css('display', 'none');
+        $('.d2h-file-header').css('display', 'none');
+      });
+  });
+  </script>
+
   </body>
 </html>
