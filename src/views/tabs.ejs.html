@@ -35,7 +35,26 @@
 <!-- Header -->
   <%- include('layout/header.ejs.html') -%>
 
-  <div class="fh5co-contact">
+<!-- Tab -->
+  <ul id="tabs" class="nav nav-tabs">
+<!-- 
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link navbar-default active" data-toggle="tab">Tab1</a>
+    </li>
+ -->
+    <li class="nav-item">
+      <a href="#new" id="tab-add" class="nav-link navbar-default" data-toggle="tab"><i class="icon-plus"></i></a>
+    </li>
+  </ul>
+  <!--タブの中身-->
+  <div id="tab-add-content" class="tab-content">
+<!--
+    <div id="tab1" class="tab-pane active">
+    </div>
+ -->
+  </div>
+
+  <div class="fh5co-contact" id="origin" style="display: none;">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -92,7 +111,80 @@
 
   <script>
 
+  var tabCount = 1;
   document.addEventListener('DOMContentLoaded', function() {
+    // 要素のディープコピー
+    var originDiffer = document.getElementById('origin').cloneNode(true);
+    originDiffer = $(originDiffer).css('display', 'block');
+
+    // var html = '';
+    // html += '<li class="nav-item">';
+    // html += '  <a href="#tab"' + tabCount + ' class="nav-link navbar-default active" data-toggle="tab">Tab' + tabCount + '</a>';
+    // html += '</li>';
+
+    // // タブの追加
+    // $('#tabs').prependTo(html);
+
+    // html = '';
+    // html += '<div id="tab1" class="tab-pane active">';
+    // html += '  <!--Tab1の内容-->';
+    // html += '</div>';
+
+    // $('#tab-contents').append(html);
+    // $('#tab' + tabCount).append(originDiffer);
+
+
+
+    $('#tabs').on('click', ' #tab-add', function(e) { //< タブ追加ボタンクリック
+      var nextTab = $('#tabs li').length;
+
+      var html = '';
+
+      html += '<li class="nav-item">';
+      html += '  <a href="#tab"' + nextTab + ' class="nav-link navbar-default" data-toggle="tab">Tab' + nextTab + '</a>';
+      html += '</li>';
+
+      $('#tabs').prepend(html);
+
+      html = '';
+      html += '<div id="tab' + nextTab + '" class="tab-pane active">';
+      html += '</div>';
+
+      $('#tab-add-content').append(html);
+
+      var originDiffer = document.getElementById('origin').cloneNode(true);
+      originDiffer = $(originDiffer).css('display', 'block');
+      $('#tab' + nextTab).append(originDiffer);
+
+      $('#tabs li:nth-last-child(1) a').tab('show');
+    }).on('click', ' li a .close', function() { //< 閉じるボタンクリック
+      var tabLi = $(this).parents('li');
+      var tabId = tabLi.children('a').attr('href');
+      if (tabLi.hasClass('active')) {
+        if (tabLi.next().attr('id') === 'tab-add') {
+          tabLi.prev().children('a').tab('show');
+        } else {
+          tabLi.next().children('a').tab('show');
+        }
+      }
+      // タブ削除
+      tabLi.remove('li');
+      $(tabId).remove();
+    }).on('shown.bs.tab', ' a[data-toggle="tab"]', function(e) { //< タブ切り替えイベント
+      // 以前のアクティブタブの閉じるボタンを削除
+      $(e.relatedTarget).children('.close').remove();
+      if($(e.target).attr('id') == 'tab-add') { return }; // 追加ボタンは削除させない
+      // アクティブタブに閉じるボタンを付与
+      $(e.target).append(
+        '<button type="button" class="close" aria-label="Close" title="タブを閉じる" style="font-size:20px">'
+        + '<span aria-hidden="true">&#215;</span><span class="sr-only">タブを閉じる</span>'
+        + '</button>'
+      );
+    });
+
+
+
+
     $('#btn-exec').on('click', function(){
       const text1 = $('#txt1').val();
       const text2 = $('#txt2').val();

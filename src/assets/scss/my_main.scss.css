@@ -10,6 +10,8 @@
 @import 'lib/magnific-popup';
 @import 'lib/style';
 
+@import 'lib/diff2html.min';
+
 /* サイズ */
 /*$baseTitleSize: 0.8em;*/
 
