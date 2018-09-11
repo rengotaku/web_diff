@@ -24,12 +24,21 @@ $baseBorderColor: #efefef;
 /* Main */
 
 #fh5co-contact {
-  padding: 1em 0; 
+  padding: 1em 0;
 }
 
 /* diffの微調整 */
-#app{
+#app {
   .d2h-wrapper .d2h-file-wrapper .d2h-files-diff .d2h-file-side-diff {
     margin-right: -10px;
+  }
+
+  .d2h-diff-tbody {
+    .d2h-code-line-prefix.plus:before {
+      content: "+";
+    }
+    .d2h-code-line-prefix.minus:before {
+      content: "-";
+    }
   }
 }
