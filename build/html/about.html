@@ -1,8 +1,17 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>DIFF | <%= title.jp %></title>
-    <%- include('layout/common_head.ejs.html') -%>
+    <title>DIFF | ビューティーディフ</title>
+    <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
+<meta name="keywords" content="diff,webツール" />
+<meta name="author" content="Ryuji" />
+
+<link rel="icon" type="image/png" href="../images/favicon.png">
+<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+<link rel="stylesheet" href="../assets/css/main.css" />
 
   <!-- 
   //////////////////////////////////////////////////////
@@ -33,7 +42,36 @@
   
   <div id="page">
 <!-- Header -->
-  <%- include('layout/header.ejs.html') -%>
+  <nav class="fh5co-nav" role="navigation">
+  <div class="top-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3">
+          <div id="fh5co-logo"><a href="index.html">BEAUTY DIFF<span>.</span></a></div>
+        </div>
+        <div class="col-xs-9 text-right menu-1">
+          <ul>
+            <li><a href="index.html">DIFF</a></li>
+            <li><a href="about.html">About</a></li>
+<!-- 
+            <li class="has-dropdown">
+              <a href="blog.html">Blog</a>
+              <ul class="dropdown">
+                <li><a href="#">Web Design</a></li>
+                <li><a href="#">eCommerce</a></li>
+                <li><a href="#">Branding</a></li>
+                <li><a href="#">API</a></li>
+              </ul>
+            </li>
+ -->
+            <!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</nav>
 
   <div id="fh5co-about">
     <div class="container">
@@ -96,7 +134,29 @@
   </div>
 
 <!-- Footer -->
-  <%- include('layout/footer.ejs.html') -%>
+  <footer id="fh5co-footer" role="contentinfo">
+  <div class="container">
+    <div class="row copyright">
+      <div class="col-md-12 text-center">
+        <p>
+          <small class="block">&copy; BEAUTY DIFF. All Rights Reserved.</small> 
+          <small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a></small>
+        </p>
+        <p>
+          <ul class="fh5co-social-icons">
+            <li><a href="https://github.com/kanagawa41/"><i class="icon-github"></i></a></li>
+<!-- 
+            <li><a href="#"><i class="icon-facebook"></i></a></li>
+            <li><a href="#"><i class="icon-linkedin"></i></a></li>
+            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+ -->
+          </ul>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</footer>
 
   </div>
 
@@ -105,7 +165,7 @@
   </div>
 
 <!-- Scripts -->
-  <%- include('layout/script.ejs.html') -%>
+  <script src="../assets/js/main.js"></script>
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {
