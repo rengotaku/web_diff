@@ -100,6 +100,14 @@
           </div>
 
           <div class="form-group row">
+            <label for="sort" class="col-sm-2 col-form-label">ソート</label>
+            <div class="col-sm-10">
+              <label class="radio-inline"><input type="radio" name="sort" value="none" checked>しない</label>
+              <label class="radio-inline"><input type="radio" name="sort" value="do">する</label>
+            </div>
+          </div>
+
+          <div class="form-group row">
             <a href="#app">
               <button type="button" id="btn-exec" class="btn btn-primary">比較する</button>
             </a>
@@ -223,11 +231,16 @@
     })();
 
     $('#btn-exec').on('click', function(){
-      const text1 = $('#txt1').val();
-      const text2 = $('#txt2').val();
+      var text1 = $('#txt1').val().replace(/\r?\n/g, "\n");
+      var text2 = $('#txt2').val().replace(/\r?\n/g, "\n");
       const outputFormat = $('input[name=optradio]:checked').val();
-      const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
+      const sort = $('input[name=sort]:checked').val();
+      if(sort == 'do') {
+        text1 = text1.split("\n").sort().join("\n");
+        text2 = text2.split("\n").sort().join("\n");
+      }
 
+      const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
       const diff2htmlUi = new Diff2HtmlUI({diff: unifiedDiff});
       diff2htmlUi.draw('#app', {inputFormat: 'json', showFiles: true, matching: 'lines', outputFormat: outputFormat});
       $('.d2h-file-list-wrapper').css('display', 'none');
