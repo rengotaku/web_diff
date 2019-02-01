@@ -40,5 +40,8 @@ $baseBorderColor: #efefef;
     .d2h-code-line-prefix.minus:before {
       content: "-";
     }
+    .d2h-code-line-prefix.space:before {
+      content: " ";
+    }
   }
 }
