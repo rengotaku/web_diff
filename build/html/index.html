@@ -252,9 +252,11 @@
           $(element).addClass('plus');
         } else if($(element).text() == '-') {
           $(element).addClass('minus');
+        } else {
+          $(element).addClass('space');
         }
 
-        $(element).text('');
+        $(element).text(' ');
       });
 
       // ダウンロードボタンの有効化

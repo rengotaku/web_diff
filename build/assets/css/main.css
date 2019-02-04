@@ -11741,6 +11741,9 @@ $baseBorderColor: #efefef;
 #app .d2h-diff-tbody .d2h-code-line-prefix.minus:before {
   content: "-"; }
 
+#app .d2h-diff-tbody .d2h-code-line-prefix.space:before {
+  content: " "; }
+
 @media all and (max-width: 240px) {
   #toast-container > div {
     padding: 8px 8px 8px 50px;
