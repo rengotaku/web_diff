@@ -98,21 +98,33 @@
               <label class="radio-inline"><input type="radio" name="optradio" value="line-by-line">Line by Line</label>
             </div>
           </div>
-
           <div class="form-group row">
-            <label for="sort" class="col-sm-2 col-form-label">ソート</label>
-            <div class="col-sm-10">
-              <label class="radio-inline"><input type="radio" name="sort" value="none" checked>しない</label>
-              <label class="radio-inline"><input type="radio" name="sort" value="do">する</label>
-            </div>
-          </div>
+            <section>
+              <label class="col-form-label" data-toggle="collapse" data-target="#options" style="padding-left: 15px;">オプション ▼</label>
+              <div id="options" class="collapse">
+                <div class="panel panel-default">
+                  <div class="panel-body">
 
-          <div class="form-group row">
-            <label for="sort" class="col-sm-2 col-form-label">最終改行の差分</label>
-            <div class="col-sm-10">
-              <label class="radio-inline"><input type="radio" name="last_line" value="noignore">無視しない</label>
-              <label class="radio-inline"><input type="radio" name="last_line" value="ignore" checked>無視する</label>
-            </div>
+                    <div class="form-group row">
+                      <label for="sort" class="col-sm-2 col-form-label">ソート</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" name="sort" value="none" checked>しない</label>
+                        <label class="radio-inline"><input type="radio" name="sort" value="do">する</label>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="sort" class="col-sm-2 col-form-label">最終改行の差分</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" name="last_line" value="noignore">無視しない</label>
+                        <label class="radio-inline"><input type="radio" name="last_line" value="ignore" checked>無視する</label>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
 
           <div class="form-group row">
@@ -255,6 +267,8 @@
       const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
 
       var actionHasDiff = function(unifiedDiff) {
+        $('#app').html('');
+
         const diff2htmlUi = new Diff2HtmlUI({diff: unifiedDiff});
         diff2htmlUi.draw('#app', {inputFormat: 'json', showFiles: true, matching: 'lines', outputFormat: outputFormat});
         $('.d2h-file-list-wrapper').css('display', 'none');
@@ -281,7 +295,11 @@
 
       // 差分の有無
       if(unifiedDiff.indexOf('@') > -1) {
+        $(".fh5co-loader").fadeIn("slow");
+
         actionHasDiff(unifiedDiff);
+
+        $(".fh5co-loader").fadeOut("slow");
       } else {
         $('#btn-download').removeClass('btn-primary');
         $('#btn-download').addClass('btn-default');
