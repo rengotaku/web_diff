@@ -26,16 +26,6 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
-<style>
-#map {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 100%;
-    z-index: 100;
-}
-</style>>
   </head>
   <body>
 
@@ -86,10 +76,18 @@
                     </div>
 
                     <div class="form-group row">
-                      <label for="sort" class="col-sm-2 col-form-label">最終改行の差分</label>
+                      <label for="last_line" class="col-sm-2 col-form-label">最終改行の差分</label>
                       <div class="col-sm-10">
                         <label class="radio-inline"><input type="radio" name="last_line" value="noignore">無視しない</label>
                         <label class="radio-inline"><input type="radio" name="last_line" value="ignore" checked>無視する</label>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="minimap" class="col-sm-2 col-form-label">ミニマップの表示</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" name="minimap" value="none" checked>しない</label>
+                        <label class="radio-inline"><input type="radio" name="minimap" value="do">する</label>
                       </div>
                     </div>
 
@@ -124,8 +122,6 @@
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
   </div>
-
-  <canvas id='map'></canvas>
 
 <!-- Scripts -->
   <%- include('layout/script.ejs.html') -%>
@@ -214,6 +210,7 @@
         text1 = text1.replace(/\s+$/, '');
         text2 = text2.replace(/\s+$/, '');
       }
+      const minimap = $('input[name=minimap]:checked').val();
 
       const unifiedDiff = JsDiff.createPatch("fileName", text1, text2, "test", "test");
 
@@ -267,6 +264,29 @@
         $('#app').html(html);
       }
 
+      // ミニマップをリセット
+      if($('body #map').length > 0) {
+        $('body #map').remove();
+      }
+      if(minimap == 'do') {
+        $('body').append('<canvas id="map"></canvas>');
+
+        /* 画面のミニマップを作成 */
+        pagemap(document.querySelector('#map'), {
+            viewport: null,
+            styles: {
+                // 'header,footer,section,article': "rgba(0,0,0,0.08)",
+                // 'h1,a': "rgba(0,0,0,0.10)",
+                // 'h2,h3,h4': "rgba(0,0,0,0.08)",
+                'ins': "rgba(221,255,221,1.0)",
+                'del': "rgba(254,232,233,1.0)",
+            },
+            back: "rgba(0,0,0,0.02)",
+            view: "rgba(0,0,0,0.05)",
+            drag: "rgba(0,0,0,0.10)",
+            interval: null
+        });
+      }
     });
 
     // ファイルとしてダウンロード
@@ -318,23 +338,6 @@
       $('#txt1').val('');
       $('#txt2').val('');
     });
-
-    /* 画面のミニマップを作成 */
-    pagemap(document.querySelector('#map'), {
-        viewport: null,
-        styles: {
-            // 'header,footer,section,article': "rgba(0,0,0,0.08)",
-            // 'h1,a': "rgba(0,0,0,0.10)",
-            // 'h2,h3,h4': "rgba(0,0,0,0.08)",
-            'ins': "rgba(221,255,221,1.0)",
-            'del': "rgba(254,232,233,1.0)",
-        },
-        back: "rgba(0,0,0,0.02)",
-        view: "rgba(0,0,0,0.05)",
-        drag: "rgba(0,0,0,0.10)",
-        interval: null
-    });
-
   });
   </script>
 
