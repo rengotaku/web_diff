@@ -333,12 +333,13 @@
 
         /* 画面のミニマップを作成 */
         pagemap(document.querySelector('#map'), {
+            // document.querySelector('#app'); とすれば範囲を比較の部分だけにできるが、移動ができなくなる
             viewport: null,
             styles: {
                 // 'header,footer,section,article': "rgba(0,0,0,0.08)",
                 // 'h1,a': "rgba(0,0,0,0.10)",
                 // 'h2,h3,h4': "rgba(0,0,0,0.08)",
-                'td.d2h-change': "rgba(151,242,149,1.0)",
+                'td.d2h-ins': "rgba(151,242,149,1.0)",
                 'td.d2h-del': "rgba(255,182,186,1.0)",
             },
             back: "rgba(0,0,0,0.10)",

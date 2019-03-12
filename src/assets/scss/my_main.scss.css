@@ -54,4 +54,6 @@ $baseBorderColor: #efefef;
     width: 200px;
     height: 100%;
     z-index: 100;
+/*    padding-top: 4em;
+    padding-bottom: 3em;*/
 }
