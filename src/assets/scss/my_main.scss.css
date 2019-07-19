@@ -51,7 +51,7 @@ $baseBorderColor: #efefef;
     position: fixed;
     top: 0;
     right: 0;
-    width: 200px;
+    width: 3em;
     height: 100%;
     z-index: 100;
 /*    padding-top: 4em;
