@@ -90,7 +90,7 @@ gulp.task('scss', ['images', 'font'], function() {
 
   var postCssOpts = [
   assets({ loadPaths: ['images/'] }),
-  autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
+  autoprefixer(),
   mqpacker
   ];
 

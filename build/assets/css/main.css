@@ -10419,6 +10419,10 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
   background: #337ab7; }
 
+::-moz-selection {
+  color: #fff;
+  background: #337ab7; }
+
 ::selection {
   color: #fff;
   background: #337ab7; }
@@ -11708,6 +11712,9 @@ input[type="text"] {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+
+.selecting-left .d2h-code-line ::-moz-selection, .selecting-left .d2h-code-line::-moz-selection, .selecting-left .d2h-code-side-line ::-moz-selection, .selecting-left .d2h-code-side-line::-moz-selection, .selecting-right td.d2h-code-linenumber::-moz-selection, .selecting-right td.d2h-code-side-linenumber ::-moz-selection, .selecting-right td.d2h-code-side-linenumber::-moz-selection {
+  background: 0 0; }
 
 .selecting-left .d2h-code-line ::selection, .selecting-left .d2h-code-line::selection, .selecting-left .d2h-code-side-line ::selection, .selecting-left .d2h-code-side-line::selection, .selecting-right td.d2h-code-linenumber::selection, .selecting-right td.d2h-code-side-linenumber ::selection, .selecting-right td.d2h-code-side-linenumber::selection {
   background: 0 0; }
